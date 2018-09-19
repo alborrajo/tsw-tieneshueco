@@ -1,0 +1,59 @@
+body
+{
+	background: #f7f2f9;
+}
+
+#topdiv
+{
+
+background-color: #e4bc98;
+color: #67a6cf;
+border-style: dashed;
+border-color: #67a6cf; 
+border-width: 3pt;
+margin-left: 5pt;
+margin-right: 5pt;
+
+}
+
+div#divdescripcion
+{
+	color: #67a6cf;
+	font-family: Georgia;
+	font-style:italic;
+	font-size: 30px;
+	text-align: center;
+}
+
+
+#encuesta
+{
+	color: #67a6cf;
+	font-family: Georgia;
+	font-style:italic;
+	font-size: 20px;
+
+}
+
+
+#bottomdiv
+{
+	color: #67a6cf;
+	background-color: #e4bc98;
+	border-style: dashed;
+	border-color: #67a6cf; 
+	border-width: 3pt;
+	font-family: Georgia;
+	font-style:italic;
+	font-size: 20px;
+}
+
+.enlace
+{
+	color: #67a6cf;
+	font-family: Georgia;
+	font-style:italic;
+	font-size: 20px;
+}
+
+}
