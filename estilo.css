@@ -3,10 +3,6 @@ body
 	background: #f7f2f9;
 }
 
-.row {
-	margin:0px;
-}
-
 #topdiv
 {
 
@@ -55,5 +51,35 @@ div#divdescripcion
 	color: #67a6cf;
 	font-family: Georgia;
 	font-style:italic;
-	font-size: 20px;
+	font-size: 15px;
+}
+
+.copyright
+{
+	text-align: center;
+}
+
+.centrado{
+	margin:10px auto;
+	display:block;
+    }
+
+    .linkencuesta
+{
+	color: #67a6cf;
+	font-family: Georgia;
+	font-style:italic;
+	font-size: 30px;
+	text-align: center;
+}
+
+ td
+ {
+ 	text-align: center;
+ }
+
+ th
+ {
+ 	text-align: center;
+ }
 }
