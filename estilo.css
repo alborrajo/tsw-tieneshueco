@@ -1,6 +1,13 @@
 body
 {
 	background: #f7f2f9;
+	margin: 0;
+  	margin-bottom: 40px;
+}
+ 
+ html {
+  min-height: 100%;
+  position: relative;
 }
 
 #topdiv
@@ -44,6 +51,11 @@ div#divdescripcion
 	font-family: Georgia;
 	font-style:italic;
 	font-size: 20px;
+
+	position: absolute;
+  	bottom: 0;
+  	width: 100%;
+  	height: 40px;
 }
 
 .enlace
@@ -105,3 +117,6 @@ div#divdescripcion
         font-size: 15px;
         font-weight: bold;
     }
+
+
+
