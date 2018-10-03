@@ -2,8 +2,8 @@
 //IMPORTANTE: Este header SOLO se debe mostrar CUANDO EL USUARIO HA INICIADO SESION
 //Si no ha iniciado sesión, se deberá mostrar otro header SIN BOTONES DE CREAR ENCUESTA, ENCUESTAS Y CERRAR SESIÓN
 
-class Header {
-    function __construct() {
+class HeaderView {
+    function __construct($logeado=false) {
         ?>
         <!DOCTYPE html>
         <html>
@@ -14,6 +14,9 @@ class Header {
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
                 <link rel="stylesheet" href="../estilo.css" type="text/css"/>
                 
                 <title>Tieneshueco?</title>
@@ -29,11 +32,15 @@ class Header {
                                     <a href="" class=" enlace"> Ayuda </a>
                                     <a href="" class="enlace"> Español </a>
                                 </div>
+
+                                <?php if($logeado) { //Mostrar solo si el usuario está logeado ?>
                                 <nav class="col-4 navegadorsuperior">
                                     <a href="" class=" enlace" data-toggle="modal" data-target="#crearEncuestaModal"> Crear encuesta </a>
-                                    <a href="" class=" enlace"> Encuestas </a>
-                                    <a href="" class=" enlace"> Cerrar sesión </a>
+                                    <a href="/index.php?controller=perfil" class=" enlace"> Encuestas </a>
+                                    <a href="/index.php?controller=login&action=logout" class=" enlace"> Cerrar sesión </a>
                                 </nav>
+                                <?php } ?>
+
                             </div>
                     </header>
 

@@ -1,5 +1,5 @@
 <?php
-class Footer {
+class FooterView {
     function __construct() {
         ?>
                 </div>
