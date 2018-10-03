@@ -8,6 +8,7 @@ class Registro{
 
 	function toString(){
 		include '../Views/header-view.php';
+		new Header();
 	?>	
 
 <body>
@@ -39,6 +40,7 @@ class Registro{
 </body>
 <?php
  include '../Views/footer-view.php';
+ new Footer();
 
 	}
 }
