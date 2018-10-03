@@ -47,8 +47,9 @@ class Header {
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form method="post" action="/Controllers/perfil-controller.php">
+                                <form method="post">
                                     <div class="modal-body">
+                                        <input type="hidden" name="controller" value="perfil">
                                         <input type="hidden" name="action" value="nuevaEncuesta">
                                         Nombre: <input type="text" name="nombre">
                                     </form>

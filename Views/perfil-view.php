@@ -1,5 +1,5 @@
 <?php
-include_once "../Classes/Encuesta.php";
+include_once "Classes/Encuesta.php";
 
 
 class PerfilView {
@@ -13,7 +13,7 @@ class PerfilView {
                 foreach($encuestas as $encuesta) {
                     ?>
                     <li class="list-group-item">
-                        <a href="action=showEncuesta&id=<?php echo $encuesta->getID(); ?>">
+                        <a href="controller=encuesta&action=showEncuesta&id=<?php echo $encuesta->getID(); ?>">
                             <?php echo $encuesta->getNombre(); ?>
                         </a>
                     </li>
