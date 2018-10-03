@@ -13,7 +13,7 @@ class PerfilView {
                 foreach($encuestas as $encuesta) {
                     ?>
                     <li class="list-group-item">
-                        <a href="poll=<?php echo $encuesta->getID(); ?>">
+                        <a href="action=showEncuesta&id=<?php echo $encuesta->getID(); ?>">
                             <?php echo $encuesta->getNombre(); ?>
                         </a>
                     </li>
