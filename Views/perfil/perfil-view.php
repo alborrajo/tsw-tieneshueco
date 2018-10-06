@@ -13,7 +13,7 @@ class PerfilView {
                 foreach($encuestas as $encuesta) {
                     ?>
                     <li class="list-group-item">
-                        <a href="controller=encuesta&action=showEncuesta&id=<?php echo $encuesta->getID(); ?>">
+                        <a href="index.php?controller=encuesta&action=participarencuesta&id=<?php echo $encuesta->getID(); ?>">
                             <?php echo $encuesta->getNombre(); ?>
                         </a>
                     </li>
