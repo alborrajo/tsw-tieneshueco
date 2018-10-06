@@ -1,5 +1,5 @@
 <?php
-include_once "../../Classes/Encuesta.php";
+include_once "Classes/Encuesta.php";
 
 
 class EditarView {
@@ -12,7 +12,6 @@ class EditarView {
 			<p> Ahora podrás editar tu encuesta, decide entre que días estará la votación y envía el enlace generado para que la gente empiece a votar. </p>
 			<br/>
 			<em> Edita tu encuesta. </em>
-			<p> Cuál es el motivo? </p>
 			</div>
 
 			<form action="/" method="POST" name="formularioencuesta">
@@ -27,7 +26,7 @@ class EditarView {
 
 							</th>
 						<?php
-						$fechas = $encuesta->getFechas();
+						$fechas = $encuesta->fechas;
 						foreach($fechas as $fecha)
 						{
 							?>
@@ -44,12 +43,12 @@ class EditarView {
 
 							</th>
 						<?php
-						$fechas = $encuesta->getFechas();
+						$fechas = $encuesta->fechas;
 						foreach($fechas as $fecha)
 						{
 							?>
 							<td>
-								<?php echo $fecha->getFecha();?>
+								<?php echo $fecha->fechas;?>
 							</td>
 							<?php
 						}
