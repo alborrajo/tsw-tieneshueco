@@ -4,7 +4,9 @@ include_once "Classes/Fecha.php";
 include_once "Classes/Hora.php";
 include_once "Classes/Voto.php";
 
-class ParticiparView {
+include_once "Views/plantilla-view.php";
+
+class ParticiparView extends PlantillaView {
 
 	private $encuesta;
 	private $votos;
@@ -15,9 +17,10 @@ class ParticiparView {
 		$this->encuesta = $encuesta;
 		$this->votos = $votos;
 		$this->msg = $msg;
+		parent::__construct(true);
 	}
 
-	function render() {
+	function _render() {
 		?>
 
 		<main class= "container">

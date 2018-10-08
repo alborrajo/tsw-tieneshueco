@@ -1,6 +1,4 @@
 <?php
-include_once "Views/header-view.php";
-include_once "Views/footer-view.php";
 
 include_once "Views/encuestas/participar-encuesta-view.php";
 include_once "Views/encuestas/editar-encuesta-view.php";
@@ -94,9 +92,7 @@ class EncuestaController
 						new Voto("login","tieneshueco.com/enlace1284u28o3uroweh","Lunes 20 agosto","10:45","12:45")
 					);
 
-					(new HeaderView(true))->render();
 					(new ParticiparView($encuesta,$votos))->render();
-					(new FooterView())->render();
 					break;
 
 				default:

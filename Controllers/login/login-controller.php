@@ -1,6 +1,4 @@
 <?php
-include_once "Views/header-view.php";
-include_once "Views/footer-view.php";
 
 include_once 'Views/login/login-view.php';//Incluir vistaLogin
 include_once 'Views/login/register-view.php';//Incluir vistaRegistro
@@ -43,32 +41,22 @@ class LoginController {
 		elseif(isset($_GET["action"])) {
 			switch($_GET["action"]) {
 				case "loginError":
-					(new HeaderView(true))->render();
 					(new LoginView("Login inválido"))->render();//Mostrar vistaLogin
-					(new FooterView())->render();
 					break;
 				case "unknown":
-					(new HeaderView(true))->render();
 					(new LoginView("Acción desconocida"))->render();//Mostrar vistaLogin
-					(new FooterView())->render();
 					break;
 				case "register":
-					(new HeaderView(true))->render();
 					(new RegisterView())->render();//Mostrar vistaLogin
-					(new FooterView())->render();
 					break;
 				default:
-					(new HeaderView(true))->render();
 					(new LoginView())->render();//Mostrar vistaLogin
-					(new FooterView())->render();
 					break;
 			}
 		}
 		//Si no se recibe nada
 		else {
-			(new HeaderView(true))->render();
 			(new LoginView())->render();//Mostrar vistaLogin
-			(new FooterView())->render();
 		}
 
 	}

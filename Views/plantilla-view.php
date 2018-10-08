@@ -2,7 +2,7 @@
 //IMPORTANTE: Este header SOLO se debe mostrar CUANDO EL USUARIO HA INICIADO SESION
 //Si no ha iniciado sesión, se deberá mostrar otro header SIN BOTONES DE CREAR ENCUESTA, ENCUESTAS Y CERRAR SESIÓN
 
-class HeaderView {
+abstract class PlantillaView {
 
     private $logeado;
 
@@ -66,7 +66,6 @@ class HeaderView {
                                         <input type="hidden" name="controller" value="perfil">
                                         <input type="hidden" name="action" value="nuevaEncuesta">
                                         Nombre: <input type="text" name="nombre">
-                                    </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -78,7 +77,21 @@ class HeaderView {
                     </div>
 
                     <br/>
-        <?php
+
+                    <?php $this->_render(); ?>
+
+                    </div>
+
+                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+                </body>
+
+            </html>
+            <?php
     }
+
+    abstract protected function _render();
 }
 ?>

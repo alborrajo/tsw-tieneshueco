@@ -1,8 +1,9 @@
 <?php
 include_once "Classes/Encuesta.php";
+include_once "Views/plantilla-view.php";
 
 
-class PerfilView {
+class PerfilView extends PlantillaView {
 
     private $encuestas;
     private $encuestasCompartidas;
@@ -12,9 +13,10 @@ class PerfilView {
         $this->encuestas = $encuestas;
         $this->encuestasCompartidas = $encuestasCompartidas;
         $this->msg = $msg;
+        parent::__construct(true);
     }
 
-    function render() {
+    function _render() {
         ?>
         <main class="container">	
             <h3>Encuestas</h3>

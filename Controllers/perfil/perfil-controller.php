@@ -1,6 +1,4 @@
 <?php
-include_once "Views/header-view.php";
-include_once "Views/footer-view.php";
 
 include_once "Views/perfil/perfil-view.php";
 include_once "Classes/Encuesta.php";
@@ -43,9 +41,7 @@ class PerfilController {
                     );
 
                     //Mostrar vista con las encuestas sacadas de la BD
-                    (new HeaderView(true))->render();
                     (new PerfilView($encuestas,$encuestasCompartidas,"Encuesta borrada"))->render();
-                    (new FooterView(true))->render();
                     break;
                 
                 case "logout":
@@ -72,9 +68,7 @@ class PerfilController {
             );
 
             //Mostrar vista con las encuestas sacadas de la BD
-            (new HeaderView(true))->render();
             (new PerfilView($encuestas,$encuestasCompartidas))->render();
-            (new FooterView())->render();
         }
 
     }

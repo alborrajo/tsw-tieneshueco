@@ -1,13 +1,16 @@
 <?php
-class LoginView{
+include_once "Views/plantilla-view.php";
+
+class LoginView extends PlantillaView {
 
     private $msg;
 
 	function __construct($msg=null){		
         $this->msg = $msg;
+        parent::__construct();
     }
     
-    function render() {
+    function _render() {
                 ?>		
         <body>
 

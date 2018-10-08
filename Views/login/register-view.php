@@ -1,14 +1,16 @@
 <?php
+include_once "Views/plantilla-view.php";
 
-class RegisterView{
+class RegisterView extends PlantillaView {
 
     private $msg;
 
 	function __construct($msg=NULL){
         $this->msg = $msg;
+        parent::__construct();
     }
 
-    function render() {
+    function _render() {
 	?>	
 
 <body>
