@@ -17,5 +17,29 @@ private $horaFin;
 		$this->horaInicio = $horaInicio;
 		$this->horaFin = $horaFin;
 	}
+
+	function getUsuario()
+	{
+		return $this->usuario;
+	}
+
+	function getIdEncuesta()
+	{
+		return $this->idEncuesta;
+	}
+
+	function getFecha()
+	{
+		return $this->fecha;
+	}
+	function getHoraInicio()
+	{
+		return $this->horaInicio;
+	}
+
+	function getHoraFin()
+	{
+		return $this->horaFin;
+	}
 }
 ?>
