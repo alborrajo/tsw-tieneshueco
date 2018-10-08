@@ -2,7 +2,13 @@
 
 class RegisterView{
 
+    private $msg;
+
 	function __construct($msg=NULL){
+        $this->msg = $msg;
+    }
+
+    function render() {
 	?>	
 
 <body>
@@ -12,9 +18,9 @@ class RegisterView{
     <form action="/" method="POST" name="formularioRegister">
         <h2 class="text-center">Registro</h2>
 
-        <?php if($msg != null) { //Mostrar alerta si la variable $msg está establecida ?>
-            <div class="alert" role="alert">
-                <?php echo $msg; ?>
+        <?php if($this->msg != null) { //Mostrar alerta si la variable $msg está establecida ?>
+            <div class="alert alert-primary" role="alert">
+                <?php echo $this->msg; ?>
             </div>       
         <?php } ?>
 

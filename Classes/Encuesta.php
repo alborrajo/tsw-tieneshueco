@@ -8,12 +8,11 @@ class Encuesta {
 
     public $fechas; //Array de objetos Fecha
 
-    function __construct($id, $n, $p,$fechas) {
+    function __construct($id, $n, $p, $fechas=null) {
         $this->ID = $id;
         $this->nombre = $n;
         $this->propietario = $p;
         $this->fechas = $fechas;
-
     }
 
     function getID() {

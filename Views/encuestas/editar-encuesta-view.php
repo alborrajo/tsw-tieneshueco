@@ -3,6 +3,10 @@ include_once "Classes/Encuesta.php";
 
 
 class EditarView {
+
+	private $encuesta;
+	private $msg;
+
 	function __construct($encuesta, $msg=NULL)
 	{
 		?>
@@ -69,7 +73,7 @@ class EditarView {
             <div class="alert" role="alert">
                 <?php echo $msg; ?>
             </div>       
-            <?php } ?>
+        <?php } ?>
         </main>
         <?php
     }

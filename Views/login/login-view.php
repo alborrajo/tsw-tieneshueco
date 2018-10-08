@@ -1,42 +1,49 @@
 <?php
 class LoginView{
+
+    private $msg;
+
 	function __construct($msg=null){		
-	?>		
-<body>
+        $this->msg = $msg;
+    }
+    
+    function render() {
+                ?>		
+        <body>
 
-	<main class="container">
-<div class="login-form">
-    <form action="/" method="POST" name="formularioLogin">
-        <h2 class="text-center">Iniciar Sesión</h2>
+            <main class="container">
+        <div class="login-form">
+            <form action="/" method="POST" name="formularioLogin">
+                <h2 class="text-center">Iniciar Sesión</h2>
 
-        <?php if($msg != null) { //Mostrar alerta si la variable $msg está establecida ?>
-            <div class="alert" role="alert">
-                <?php echo $msg; ?>
-            </div>
-        <?php } ?>
+                <?php if($this->msg != null) { //Mostrar alerta si la variable $msg está establecida ?>
+                    <div class="alert alert-primary" role="alert">
+                        <?php echo $this->msg; ?>
+                    </div>
+                <?php } ?>
 
-        <input type="hidden" name="action" value="login">
+                <input type="hidden" name="action" value="login">
 
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Correo electrónico" required="required" name="email">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Correo electrónico" required="required" name="email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Contraseña" required="required" name="password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block" value="Login">Entrar</button>
+                </div>
+                <div class="clearfix">
+                    <label class="pull-left checkbox-inline"><input type="checkbox"> Recuerdame</label>
+                </div>        
+            </form>
+            <p class="text-center"><a href="/index.php?controller=login&action=register">Registrarse</a></p>
         </div>
-        <div class="form-group">
-            <input type="password" class="form-control" placeholder="Contraseña" required="required" name="password">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block" value="Login">Entrar</button>
-        </div>
-        <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox"> Recuerdame</label>
-        </div>        
-    </form>
-    <p class="text-center"><a href="/index.php?controller=login&action=register">Registrarse</a></p>
-</div>
-	
-	</main>
+            
+            </main>
 
-</body>
-	<?php 		
-	}
+        </body>
+            <?php 		
+    }
 
 }?>

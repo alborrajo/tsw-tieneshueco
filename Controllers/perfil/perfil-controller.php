@@ -43,9 +43,9 @@ class PerfilController {
                     );
 
                     //Mostrar vista con las encuestas sacadas de la BD
-                    new HeaderView(true);
-                    new PerfilView($encuestas,$encuestasCompartidas,"Encuesta borrada");
-                    new FooterView(true);
+                    (new HeaderView(true))->render();
+                    (new PerfilView($encuestas,$encuestasCompartidas,"Encuesta borrada"))->render();
+                    (new FooterView(true))->render();
                     break;
                 
                 case "logout":
@@ -72,9 +72,9 @@ class PerfilController {
             );
 
             //Mostrar vista con las encuestas sacadas de la BD
-            new HeaderView(true);
-            new PerfilView($encuestas,$encuestasCompartidas);
-            new FooterView(true);
+            (new HeaderView(true))->render();
+            (new PerfilView($encuestas,$encuestasCompartidas))->render();
+            (new FooterView())->render();
         }
 
     }

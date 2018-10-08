@@ -3,7 +3,14 @@
 //Si no ha iniciado sesión, se deberá mostrar otro header SIN BOTONES DE CREAR ENCUESTA, ENCUESTAS Y CERRAR SESIÓN
 
 class HeaderView {
+
+    private $logeado;
+
     function __construct($logeado=false) {
+        $this->logeado = $logeado;
+    }
+
+    function render() {
         ?>
         <!DOCTYPE html>
         <html>
@@ -33,7 +40,7 @@ class HeaderView {
                                     <a href="" class="enlace"> Español </a>
                                 </div>
 
-                                <?php if($logeado) { //Mostrar solo si el usuario está logeado ?>
+                                <?php if($this->logeado) { //Mostrar solo si el usuario está logeado ?>
                                 <nav class="col-4 navegadorsuperior">
                                     <a href="" class=" enlace" data-toggle="modal" data-target="#crearEncuestaModal"> Crear encuesta </a>
                                     <a href="/index.php?controller=perfil" class=" enlace"> Encuestas </a>

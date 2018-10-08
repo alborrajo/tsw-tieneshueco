@@ -43,32 +43,32 @@ class LoginController {
 		elseif(isset($_GET["action"])) {
 			switch($_GET["action"]) {
 				case "loginError":
-					new HeaderView();
-					new LoginView("Login inválido");//Mostrar vistaLogin
-					new FooterView();
+					(new HeaderView(true))->render();
+					(new LoginView("Login inválido"))->render();//Mostrar vistaLogin
+					(new FooterView())->render();
 					break;
 				case "unknown":
-					new HeaderView();
-					new LoginView("Acción desconocida");//Mostrar vistaLogin
-					new FooterView();
+					(new HeaderView(true))->render();
+					(new LoginView("Acción desconocida"))->render();//Mostrar vistaLogin
+					(new FooterView())->render();
 					break;
 				case "register":
-					new HeaderView();
-					new RegisterView(); //Mostrar vista register
-					new FooterView();
+					(new HeaderView(true))->render();
+					(new RegisterView())->render();//Mostrar vistaLogin
+					(new FooterView())->render();
 					break;
 				default:
-					new HeaderView();
-					new LoginView();//Mostrar vistaLogin
-					new FooterView();
+					(new HeaderView(true))->render();
+					(new LoginView())->render();//Mostrar vistaLogin
+					(new FooterView())->render();
 					break;
 			}
 		}
 		//Si no se recibe nada
 		else {
-			new HeaderView();
-			new LoginView();//Mostrar vistaLogin
-			new FooterView();
+			(new HeaderView(true))->render();
+			(new LoginView())->render();//Mostrar vistaLogin
+			(new FooterView())->render();
 		}
 
 	}

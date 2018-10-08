@@ -5,13 +5,24 @@ include_once "Classes/Hora.php";
 include_once "Classes/Voto.php";
 
 class ParticiparView {
+
+	private $encuesta;
+	private $votos;
+	private $msg;
+
 	function __construct($encuesta, $votos, $msg=NULL)
 	{
+		$this->encuesta = $encuesta;
+		$this->votos = $votos;
+		$this->msg = $msg;
+	}
+
+	function render() {
 		?>
 
 		<main class= "container">
 			<div id="divdescripcion">
-			<p> <?php echo $encuesta->getNombre();?> </p>
+			<p> <?php echo $this->encuesta->getNombre();?> </p>
 			<br/>
 			<em> Participa en la encuesta. </em>
 			</div>
@@ -24,7 +35,7 @@ class ParticiparView {
 					</th>
 				<?php
 				//Insertamos las fechas en la primera fila de la tabla
-				$fechas = $encuesta->getFechas();
+				$fechas = $this->encuesta->getFechas();
 					foreach($fechas as $fecha)
 					{
 						?>
@@ -62,7 +73,7 @@ class ParticiparView {
 
 
 			//Creamos subgrupos con los votos de cada usuario
-			$votosAgrupados = $this->subgruposVotos($votos);
+			$votosAgrupados = $this->subgruposVotos($this->votos);
 			//var_dump($votosAgrupados);
 
 			//Ordenar los votos segun el orden de las fechas en la encuesta
@@ -95,7 +106,14 @@ class ParticiparView {
 								{
 								?>
 								<td>
-									<form action="delVoto" method="post">
+									<form action="index.php" method="post">
+										<input type="hidden" name="controller" value="encuesta">
+										<input type="hidden" name="action" value="delVoto">
+										<input type="hidden" name="email" value="<?php echo $usuario ?>">
+										<input type="hidden" name="idEncuesta" value="<?php $this->encuesta->getID() ?>">
+										<input type="hidden" name="fecha" value="<?php $fecha->getFecha() ?>">
+										<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
+										<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
 										<input type="submit" value="votado" checked="checked"/>
 									</form>
 								</td>
@@ -103,12 +121,12 @@ class ParticiparView {
 								}
 								else
 								{
-									?>
-									<td>
-										<img src="images/voto.png" height="64" width="64"/>
-									</td>
+								?>
+								<td>
+									<img src="images/voto.png" height="64" width="64"/>
+								</td>
 
-									<?php
+								<?php
 								}
 								
 							}
@@ -126,7 +144,14 @@ class ParticiparView {
 								?>
 
 								<td>
-									<form action="addVoto" method="post">
+									<form action="index.php" method="post">
+										<input type="hidden" name="controller" value="encuesta">
+										<input type="hidden" name="action" value="addVoto">
+										<input type="hidden" name="email" value="<?php echo $usuario ?>">
+										<input type="hidden" name="idEncuesta" value="<?php $this->encuesta->getID() ?>">
+										<input type="hidden" name="fecha" value="<?php $fecha->getFecha() ?>">
+										<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
+										<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
 										<input type="submit" value="No votado" checked="checked"/>
 									</form>
 								</td>
@@ -153,9 +178,9 @@ class ParticiparView {
 			</table>
 		</div>
 
-		<?php if($msg != null) { //Mostrar alerta si la variable $msg está establecida ?>
+		<?php if($this->msg != null) { //Mostrar alerta si la variable $msg está establecida ?>
             <div class="alert" role="alert">
-                <?php echo $msg; ?>
+                <?php echo $this->msg; ?>
             </div>       
             <?php } ?>
 
