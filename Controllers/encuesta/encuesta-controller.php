@@ -80,6 +80,22 @@ class EncuestaController
 				case "editencuesta":
 					//TODO: Obtener la encuesta en la BD por medio de su link.
 					//Mostrar la vista edit de esa encuesta
+					case "editencuesta":
+					$horas = Array(new Hora("10:45","12:45"),new Hora( "10:45","12:45"));
+					$fechas = Array(new Fecha("Sabado 15 agosto", $horas), new Fecha("Viernes 14 agosto", $horas),new Fecha("Lunes 20 agosto", $horas));
+					$encuesta = new Encuesta("tieneshueco.com/enlace1284u28o3uroweh", "Pachanga brava", "Manolo el del bombo", $fechas);
+					$votos = Array(
+						new Voto("Juan","tieneshueco.com/enlace1284u28o3uroweh","Lunes 20 agosto","10:45","12:45"),
+						new Voto("Juan","tieneshueco.com/enlace1284u28o3uroweh","Sabado 15 agosto","10:45","12:45"),
+						new Voto("login","tieneshueco.com/enlace1284u28o3uroweh","Lunes 20 agosto","10:45","12:45")
+					);
+
+					(new EditarView($encuesta,$votos))->render();
+					break;
+
+				default:
+					header("Location: index.php");
+					break;
 					break;
 
 				case "participarencuesta":
