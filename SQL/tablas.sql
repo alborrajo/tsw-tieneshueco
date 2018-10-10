@@ -1,5 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0;
 
+DROP USER IF EXISTS 'tieneshueco'@localhost;
 CREATE USER 'tieneshueco'@localhost IDENTIFIED BY 'tieneshueco';
 
 DROP DATABASE IF EXISTS TIENESHUECO;

@@ -7,12 +7,12 @@ class PerfilView extends PlantillaView {
 
     private $encuestas;
     private $encuestasCompartidas;
-    private $msg;
+    private $msgException;
 
-    function __construct($encuestas, $encuestasCompartidas, $msg=NULL) {
+    function __construct($encuestas, $encuestasCompartidas, $msgException=NULL) {
         $this->encuestas = $encuestas;
         $this->encuestasCompartidas = $encuestasCompartidas;
-        $this->msg = $msg;
+        $this->msgException = $msgException;
         parent::__construct(true);
     }
 
@@ -50,10 +50,10 @@ class PerfilView extends PlantillaView {
 
             <br>
 
-            <?php if($this->msg != null) { //Mostrar alerta si la variable $msg está establecida ?>
-            <div class="alert" role="alert">
-                <?php echo $this->msg; ?>
-            </div>       
+            <?php if($this->msgException != null) { //Mostrar alerta si la variable $msg está establecida ?>
+            <div class="alert alert-<?php echo $this->msgException->getStatus(); ?>" role="alert">
+                <?php echo $this->msgException->getMessage(); ?>
+            </div>     
             <?php } ?>
 
             <h3>Encuestas compartidas</h3>

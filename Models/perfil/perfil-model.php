@@ -8,7 +8,7 @@ class PerfilModel {
 
     function __construct() {
         try {
-            $this->dbh = new PDO('mysql:host=localhost;dbname=tieneshueco', "tieneshueco", "tieneshueco");
+            $this->dbh = new PDO('mysql:host=localhost;dbname=TIENESHUECO', "tieneshueco", "tieneshueco");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e) {
@@ -68,6 +68,32 @@ class PerfilModel {
         }
         catch (PDOException $e) {
             throw new MSGException("Error eliminando encuesta","danger");    
+        }
+    }
+
+
+    function getEncuestas($email) {
+        try {
+            $toReturn = array();
+
+            //Encuestas propias
+            $stmt = $this->dbh->prepare("SELECT * FROM ENCUESTA WHERE PROPIETARIO = :email");
+            $stmt->bindParam(":email", $email);
+
+            if(!$stmt->execute()) {throw new PDOException();}
+
+            $toReturn["encuestas"] = $stmt->fetch();
+
+            //Encuestas compartidas
+            $stmt = $this->dbh->prepare("SELECT e.* FROM ENCUESTA e, VOTA v WHERE CORREOUSUARIO = :email AND ID = IDENCUESTA");
+            $stmt->bindParam(":email", $email);
+
+            if(!$stmt->execute()) {throw new PDOException();}
+
+            $toReturn["encuestasCompartidas"] = $stmt->fetch();
+        }
+        catch (PDOException $e) {
+            throw new MSGException("Error obteniendo datos de las encuestas del usuario","danger");    
         }
     }
 

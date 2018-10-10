@@ -51,7 +51,7 @@ class EditarView extends PlantillaView{
 								<input type="hidden" name="controller" value="encuesta"/>
 								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>"/>
 								<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>"/>
-								<input type="submit" name="eliminar" value="Borrar fecha"/>
+								<button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 							</form>
 						</th>
 						<?php
@@ -76,7 +76,7 @@ class EditarView extends PlantillaView{
 								<input type="hidden" name="controller" value="encuesta"/>
 								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>"/>
 								<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>"/>
-								<input type="submit" name="nuevaHora" value="Nueva hora"/>
+								<button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i></button>
 							</form>
 								
 						</th>

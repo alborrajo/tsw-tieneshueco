@@ -22,5 +22,18 @@ class MSGException extends Exception {
     public function getStatus() {
         return $this->status;
     }
+
+    //Métodos para guardar un mensaje temporal en el SESSION que solo se pueda mostrar una única vez
+    public static function setTemporalMessage($msgException) {
+        $_SESSION["msg"] = $msgException;
+    }
+
+    public static function getTemporalMessage() {
+        $msg = $_SESSION["msg"];
+        unset($_SESSION["msg"]);
+        return $msg;
+    }
+
+
 }
 ?>
