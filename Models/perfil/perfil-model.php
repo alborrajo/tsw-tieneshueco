@@ -24,7 +24,7 @@ class PerfilModel {
         try {
             $id = md5(uniqid($_SESSION["email"], true));
 
-            $stmt = $this->dbh->prepare("INSERT INTO ENCUESTA (ID, NOMBRE, PROPIETARIO) VALUES (:id, :nombre, :value)");
+            $stmt = $this->dbh->prepare("INSERT INTO ENCUESTA (ID, NOMBRE, PROPIETARIO) VALUES (:id, :nombre, :propietario)");
             $stmt->bindParam(":id", $id);
             $stmt->bindParam(":nombre", $nombre);
             $stmt->bindParam(":propietario", $propietario);
@@ -59,14 +59,15 @@ class PerfilModel {
     //Tira MSGException si falla
     function delEncuesta($id) {
         try {
-            $id = md5(uniqid($_SESSION["email"], true));
-
             $stmt = $this->dbh->prepare("DELETE FROM ENCUESTA WHERE ID = :id");
             $stmt->bindParam(":id", $id);
 
             if(!$stmt->execute()) {throw new PDOException();}
+            
         }
         catch (PDOException $e) {
+            var_dump($stmt->fetchAll());
+            exit;
             throw new MSGException("Error eliminando encuesta","danger");    
         }
     }

@@ -28,10 +28,13 @@ class PerfilController {
                         if($perfilModel->getPropietarioEncuesta($_POST["id"]) == $_SESSION["email"]) {
                             //Borrar encuesta de la BD
                             $perfilModel->delEncuesta($_POST["id"]);
-                        }                        
+                            MSGException::setTemporalMessage(new MSGException("Encuesta eliminada con éxito","success"));
+                        }
+                        else {
+                            throw new MSGException("La encuesta a eliminar no pertenece al usuario","warning");
+                        }
 
                         //Redirigir al controlador de PERFIL para mostrar mensaje confirmando
-                        MSGException::setTemporalMessage(new MSGException("Encuesta eliminada con éxito","success"));
                         header("Location: /index.php?controller=perfil"); //Redirigir al perfil con la accion por GET
                         break;
 
