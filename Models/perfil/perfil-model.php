@@ -82,7 +82,10 @@ class PerfilModel {
 
             if(!$stmt->execute()) {throw new PDOException();}
 
-            $toReturn["encuestas"] = $stmt->fetch();
+            foreach($stmt->fetchAll() as $encuesta) {
+                //Por cada Encuesta encontrada, añadir al array un nuevo objeto con los datos encontrados
+                $toReturn["encuestas"][] = new Encuesta($encuesta["ID"],$encuesta["NOMBRE"],$encuesta["PROPIETARIO"]);
+            }
 
             //Encuestas compartidas
             $stmt = $this->dbh->prepare("SELECT e.* FROM ENCUESTA e, VOTA v WHERE CORREOUSUARIO = :email AND ID = IDENCUESTA");
@@ -90,7 +93,12 @@ class PerfilModel {
 
             if(!$stmt->execute()) {throw new PDOException();}
 
-            $toReturn["encuestasCompartidas"] = $stmt->fetch();
+            foreach($stmt->fetchAll() as $encuesta) {
+                //Por cada Encuesta Compartida encontrada, añadir al array un nuevo objeto con los datos encontrados
+                $toReturn["encuestasCompartidas"][] = new Encuesta($encuesta["ID"],$encuesta["NOMBRE"],$encuesta["PROPIETARIO"]);
+            }
+
+            return $toReturn;
         }
         catch (PDOException $e) {
             throw new MSGException("Error obteniendo datos de las encuestas del usuario","danger");    

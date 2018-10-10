@@ -7,9 +7,9 @@ class MSGView extends PlantillaView {
 
     private $msgException;
 
-    function __construct($msgException) {
+    function __construct($msgException,$logeado=false) {
         $this->msgException = $msgException;
-        parent::__construct(true);
+        parent::__construct($logeado);
     }
 
     function _render() {

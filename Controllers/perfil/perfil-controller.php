@@ -63,7 +63,7 @@ class PerfilController {
             (new PerfilView($encuestas["encuestas"],$encuestas["encuestasCompartidas"],MSGException::getTemporalMessage()))->render();
         } catch (MSGException $e) {
             MSGException::setTemporalMessage($e); //Añadir mensaje temporal de error
-            (new MSGView($e))->render();
+            (new MSGView($e,true))->render();
         }
 
     }

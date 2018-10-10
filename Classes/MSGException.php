@@ -29,8 +29,13 @@ class MSGException extends Exception {
     }
 
     public static function getTemporalMessage() {
-        $msg = $_SESSION["msg"];
-        unset($_SESSION["msg"]);
+        if(isset($_SESSION["msg"])) {
+            $msg = $_SESSION["msg"];
+            unset($_SESSION["msg"]);
+        }
+        else {
+            $msg = null;
+        }
         return $msg;
     }
 
