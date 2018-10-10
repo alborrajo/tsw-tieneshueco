@@ -25,12 +25,24 @@ class EditarView extends PlantillaView{
 
 		?>
 
+
 		<main class= "container">
+
 			<div id="divdescripcion">
 			<p> Ahora podrás editar tu encuesta, decide entre que días estará la votación y envía el enlace generado para que la gente empiece a votar. </p>
 			<br/>
 			<em> Edita tu encuesta. </em>
 			</div>
+
+			<div class="formfecha">
+			<form action="index.php" method="POST"/>
+				<input type="date" name="fecha"/>
+				<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>"/>
+				<input type="hidden" name="action" value="addFecha"/>
+				<input type="hidden" name="controller" value="encuesta"/>
+				<input type="submit" name="btnaddfecha" value="Nueva fecha"/>
+			</form>
+		</div>
 		
 			<div id="encuesta">
 			<table class="table-bordered">
@@ -190,6 +202,11 @@ class EditarView extends PlantillaView{
 					?>
 				</tr>
 			</table>
+		</div>
+
+		<div class="linkencuesta">
+					<p> Comparte este link para que la gente participe </p>
+					<input type="text" size="35" value="<?php echo $this->encuesta->getID();?>"/>
 		</div>
 			<?php
 			}		
