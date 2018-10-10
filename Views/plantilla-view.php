@@ -61,7 +61,7 @@ abstract class PlantillaView {
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form method="post">
+                                <form action="/index.php" method="post">
                                     <div class="modal-body">
                                         <input type="hidden" name="controller" value="perfil">
                                         <input type="hidden" name="action" value="nuevaEncuesta">

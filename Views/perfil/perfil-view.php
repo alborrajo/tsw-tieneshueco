@@ -34,6 +34,14 @@ class PerfilView extends PlantillaView {
                         <a href="index.php?controller=encuesta&action=editencuesta&id=<?php echo $encuesta->getID(); ?>">
                             EDIT
                         </a>
+
+                        <!-- TODO: Meter boton de verdad -->
+                        <form action="/index.php" method="post">
+                            <input type="hidden" name="controller" value="perfil">
+                            <input type="hidden" name="action" value="delEncuesta">
+                            <input type="hidden" name="id" value="<?php echo $encuesta->getID(); ?>">
+                            <input type="submit" value="DELETE">
+                        </form>
                     </li>
                     <?php
                 }
