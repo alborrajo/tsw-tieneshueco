@@ -66,8 +66,6 @@ class PerfilModel {
             
         }
         catch (PDOException $e) {
-            var_dump($stmt->fetchAll());
-            exit;
             throw new MSGException("Error eliminando encuesta","danger");    
         }
     }
