@@ -3,6 +3,8 @@ include_once "Classes/Encuesta.php";
 include_once "Classes/Fecha.php";
 include_once "Classes/Hora.php";
 include_once "Classes/Voto.php";
+include_once "Classes/MSGException.php";
+
 
 include_once "Views/plantilla-view.php";
 
@@ -12,10 +14,9 @@ class EditarView extends PlantillaView{
 	private $votos;
 	private $msg;
 
-	function __construct($encuesta,$votos, $msg=NULL)
+	function __construct($encuesta, $msg=NULL)
 	{
 		$this->encuesta = $encuesta;
-		$this->votos = $votos;
 		parent::__construct(true);
 	}
 	
@@ -104,8 +105,9 @@ class EditarView extends PlantillaView{
 		}
 		?>
 
+	</div>
+
 		<h4>Nueva fecha</h4>
-		
 		<form class="form-inline" action="index.php" method="POST">
 			<input type="date" name="fecha" class="form-control"/>
 			<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
@@ -120,9 +122,6 @@ class EditarView extends PlantillaView{
 			<p> Comparte este link para que la gente participe </p>
 			<input type="text" size="35" value="<?php echo $this->encuesta->getID();?>" />
 		</div>
-
-	</div>
-
 
 </main>
 	<?php

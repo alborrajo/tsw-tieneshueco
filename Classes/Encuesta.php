@@ -26,8 +26,12 @@ class Encuesta {
     function getPropietario() {
         return $this->propietario;
     }
-    function getFechas()
-    {
+
+    function setFechas($fechas) {
+        $this->fechas = $fechas;
+    }
+
+    function getFechas() {
         return $this->fechas;
     }
 

@@ -7,7 +7,7 @@ class Fecha {
     //Array con las horas para esa fecha
     public $horas;
 
-    function __construct( $fecha, $horas) {
+    function __construct( $fecha, $horas=null) {
         $this->fecha=$fecha;
         $this->horas = $horas;
     }

@@ -1,7 +1,6 @@
 <?php
 class Hora
 {
-	private $idEncuesta;
 	private $horaInicio;
 	private $horaFin;
 

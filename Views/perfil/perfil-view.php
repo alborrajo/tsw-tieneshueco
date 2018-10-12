@@ -1,5 +1,7 @@
 <?php
 include_once "Classes/Encuesta.php";
+include_once "Classes/MSGException.php";
+
 include_once "Views/plantilla-view.php";
 
 

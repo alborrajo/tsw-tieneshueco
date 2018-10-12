@@ -70,8 +70,7 @@ class ParticiparView extends PlantillaView {
 								{
 									?>
 									<td>
-										<?php echo $hora->getHoraInicio()."-";?>
-										<?php echo $hora->getHoraFin();?>
+										<?php echo $hora->getHoraInicio()." - ".$hora->getHoraFin(); ?>
 									</td>
 									<?php
 								}
