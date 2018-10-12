@@ -94,7 +94,6 @@ div#divdescripcion
  {
  	text-align: center;
  }
-}
 
 .login-form {
 		width: 340px;
@@ -118,5 +117,8 @@ div#divdescripcion
         font-weight: bold;
     }
 
+.color-blue {
+	color: #67a6cf;
+}
 
 

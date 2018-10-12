@@ -26,108 +26,60 @@ class EditarView extends PlantillaView{
 		?>
 
 
-		<main class= "container">
+<main class="container">
 
-			<div id="divdescripcion">
-			<p> Ahora podrás editar tu encuesta, decide entre que días estará la votación y envía el enlace generado para que la gente empiece a votar. </p>
-			<br/>
-			<em> Edita tu encuesta. </em>
-			</div>
+	<div id="divdescripcion">
+		<h1> <?php echo $this->encuesta->getNombre();?> </h1>
+		<p> Ahora podrás editar tu encuesta, decide entre que días estará la votación y envía el enlace generado para que la
+			gente empiece a votar. </p>
+		<br />
+		<h4> Edita tu encuesta. </h4>
+	</div>
 
-			<div class="formfecha">
-			<form action="index.php" method="POST"/>
-				<input type="date" name="fecha"/>
-				<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>"/>
-				<input type="hidden" name="action" value="addFecha"/>
-				<input type="hidden" name="controller" value="encuesta"/>
-				<input type="submit" name="btnaddfecha" value="Nueva fecha"/>
-			</form>
-		</div>
-		
-			<div id="encuesta">
-			<table class="table-bordered">
-				<tr>
-					<th colspan="2">
-
-					</th>
-				<?php
-				
-				//Insertamos las fechas en la primera fila de la tabla
-				$fechas = $this->encuesta->getFechas();
-					foreach($fechas as $fecha)
-					{
-						?>
-						<th colspan=<?php echo count($fecha->getHoras())?>>
-							<form action="index.php" method="POST">
-								<input type="hidden" name="action" value="delFecha"/>
-								<input type="hidden" name="controller" value="encuesta"/>
-								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>"/>
-								<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>"/>
-								<button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-							</form>
-						</th>
-						<?php
-					}
-					?>
-				</tr>
-
-
-				<tr>
-					<th colspan="2">
-						Fechas
-					</th>
-				<?php
-				//Insertamos las fechas en la primera fila de la tabla
-					foreach($fechas as $fecha)
-					{
-						?>
-						<th colspan=<?php echo count($fecha->getHoras())?>>
-							<?php echo $fecha->getFecha();?>
-							<form action="index.php" method="POST">
-								<input type="hidden" name="action" value="addHora"/>
-								<input type="hidden" name="controller" value="encuesta"/>
-								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>"/>
-								<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>"/>
-								<button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i></button>
-							</form>
-								
-						</th>
-						<?php
-					}
-					?>
-				</tr>
-
+	<div id="encuesta">
+		<table class="table table-bordered">
+			
 			<tr>
 				<th colspan="2">
+					Fechas
 				</th>
 				<?php
-				//Insertamos las horas en la segunda fila de la tabla
-				foreach($fechas as $fecha)
-				{
-					$horas = $fecha->getHoras();
-					foreach($horas as $hora)
+					$fechas = $this->encuesta->getFechas();
+					//Insertamos las fechas en la primera fila de la tabla
+					foreach($fechas as $fecha)
 					{
 						?>
-						<td>
-							<?php //Insertar boton eliminar para todas las horas ?>
-							<form action="index.php" method="POST">
-								<input type="hidden" name="action" value="delHora"/>
-								<input type="hidden" name="controller" value="encuesta"/>
-								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>"/>
-								<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>"/>
-								<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio();?>"/>
-								<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin();?>"/>
-								<input type="submit" name="eliminarHora" value="Borrar hora"/>
-							</form>
-						</td>
-						<?php
+				<td colspan=<?php echo count($fecha->getHoras())+1?>>
+					<?php echo $fecha->getFecha();?>
+					<form class="d-inline" action="index.php" method="POST">
+						<input type="hidden" name="action" value="delFecha" />
+						<input type="hidden" name="controller" value="encuesta" />
+						<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
+						<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>" />
+						<button type="submit" class="btn btn-danger"><span class="fas fa-trash-alt"></span></button>
+					</form>
+
+				</td>
+				<?php
 					}
-				}
-				?>
+					?>
+
+				<!-- Creacion de fecha -->
+				<td>
+					<form action="index.php" method="POST">
+						<input type="date" name="fecha" />
+						<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
+						<input type="hidden" name="action" value="addFecha" />
+						<input type="hidden" name="controller" value="encuesta" />
+						<button type="submit" class="btn btn-primary"><span class="fas fa-plus-circle"></span></button>
+					</form>
+				</td>
+
+
 			</tr>
 
 			<tr>
-				<th colspan="2">
+				<th colspan=2>
 					Horas
 				</th>
 				<?php
@@ -138,15 +90,40 @@ class EditarView extends PlantillaView{
 					foreach($horas as $hora)
 					{
 						?>
-						<td>
-							<?php //Insertar boton eliminar para todas las horas ?>
-							<?php echo $hora->getHoraInicio()."-";?>
-							<?php echo $hora->getHoraFin();?>
-						</td>
-						<?php
+				<td>
+					<?php echo $hora->getHoraInicio()."-".$hora->getHoraFin();?>
+					<!-- boton eliminar para hora -->
+					<form class="d-inline" action="index.php" method="POST">
+						<input type="hidden" name="action" value="delHora" />
+						<input type="hidden" name="controller" value="encuesta" />
+						<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
+						<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>" />
+						<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio();?>" />
+						<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin();?>" />
+						<button type="submit" class="btn btn-danger btn-xs"><span class="fas fa-trash-alt"></span></button>
+					</form>
+				</td>
+
+				<?php
 					}
+					?>
+					<td>
+						<!-- Botón de creación de hora -->
+						<form action="index.php" method="POST">
+							<input type="time" name="hora">
+							<input type="hidden" name="action" value="addHora" />
+							<input type="hidden" name="controller" value="encuesta" />
+							<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
+							<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>" />
+							<button type="submit" class="btn btn-primary btn-xs"><span class="fas fa-plus-circle"></span></button>
+						</form>
+					</td>
+					<?php
 				}
 				?>
+				
+				<!-- Hueco vacío para la columna de crear fecha -->
+				<td></td>
 			</tr>
 
 			<?php
@@ -170,11 +147,11 @@ class EditarView extends PlantillaView{
 			{
 				$usuario =$votosAgrupados[$i][0]->getUsuario();
 				?>
-				<tr>
-					<th colspan="2">
-						<?php echo $usuario;?>
-					</th>
-					<?php
+			<tr>
+				<th colspan="2">
+					<?php echo $usuario;?>
+				</th>
+				<?php
 					foreach($fechas as $fecha)
 					{
 						foreach($horas as $hora)
@@ -183,32 +160,43 @@ class EditarView extends PlantillaView{
 							if($voto==true)
 							{
 								?>
-								<td>
-									<img src="images/voto.png" height="64" width="64"/>
-								</td>
+				<td>
+					<i class="fas fa-check-circle fa-3x color-blue"></i>
+				</td>
 
-								<?php
+				<?php
 							}
 							else
 							{
 								?>
-								<td>
-								</td>
-								<?php
+				<td>
+				</td>
+				<?php
 							}
 							}
+				?>
+				<!-- Hueco vacío para la columna de crear hora -->
+				<td></td>
+				<?php
 						}
+
+					?>
+					<!-- Hueco vacío para la columna de crear fecha -->
+					<td></td>
+					<?php
 					}
 					?>
-				</tr>
-			</table>
-		</div>
 
-		<div class="linkencuesta">
-					<p> Comparte este link para que la gente participe </p>
-					<input type="text" size="35" value="<?php echo $this->encuesta->getID();?>"/>
-		</div>
-			<?php
+				
+			</tr>
+		</table>
+	</div>
+
+	<div class="linkencuesta">
+		<p> Comparte este link para que la gente participe </p>
+		<input type="text" size="35" value="<?php echo $this->encuesta->getID();?>" />
+	</div>
+	<?php
 			}		
 
 	function subgruposVotos($votos)
