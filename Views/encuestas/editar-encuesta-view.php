@@ -33,171 +33,100 @@ class EditarView extends PlantillaView{
 		<p> Ahora podrás editar tu encuesta, decide entre que días estará la votación y envía el enlace generado para que la
 			gente empiece a votar. </p>
 		<br />
-		<h4> Edita tu encuesta. </h4>
+		<h3> Edita tu encuesta. </h3>
 	</div>
 
-	<div id="encuesta">
-		<table class="table table-bordered">
-			
-			<tr>
-				<th colspan="2">
-					Fechas
-				</th>
-				<?php
-					$fechas = $this->encuesta->getFechas();
-					//Insertamos las fechas en la primera fila de la tabla
-					foreach($fechas as $fecha)
-					{
-						?>
-				<td colspan=<?php echo count($fecha->getHoras())+1?>>
-					<?php echo $fecha->getFecha();?>
-					<form class="d-inline" action="index.php" method="POST">
-						<input type="hidden" name="action" value="delFecha" />
-						<input type="hidden" name="controller" value="encuesta" />
-						<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
-						<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>" />
-						<button type="submit" class="btn btn-danger"><span class="fas fa-trash-alt"></span></button>
-					</form>
-
-				</td>
-				<?php
-					}
-					?>
-
-				<!-- Creacion de fecha -->
-				<td>
-					<form action="index.php" method="POST">
-						<input type="date" name="fecha" />
-						<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
-						<input type="hidden" name="action" value="addFecha" />
-						<input type="hidden" name="controller" value="encuesta" />
-						<button type="submit" class="btn btn-primary"><span class="fas fa-plus-circle"></span></button>
-					</form>
-				</td>
+	<div class="container mx-auto">
 
 
-			</tr>
+		<?php
+		for($i = 0; $i < count($this->encuesta->getFechas()); $i++) {
+			if($i % 3 == 0) {
+				?><div class="row"><?php
+			}
+			?>
+			<div class="col-sm-4">
 
-			<tr>
-				<th colspan=2>
-					Horas
-				</th>
-				<?php
-				//Insertamos las horas en la segunda fila de la tabla
-				foreach($fechas as $fecha)
-				{
-					$horas = $fecha->getHoras();
-					foreach($horas as $hora)
-					{
-						?>
-				<td>
-					<?php echo $hora->getHoraInicio()."-".$hora->getHoraFin();?>
-					<!-- boton eliminar para hora -->
-					<form class="d-inline" action="index.php" method="POST">
-						<input type="hidden" name="action" value="delHora" />
-						<input type="hidden" name="controller" value="encuesta" />
-						<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
-						<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>" />
-						<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio();?>" />
-						<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin();?>" />
-						<button type="submit" class="btn btn-danger btn-xs"><span class="fas fa-trash-alt"></span></button>
-					</form>
-				</td>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<h4>
+							<?php echo $this->encuesta->getFechas()[$i]->getFecha();?>
+							
+							<form class="d-inline float-right form-inline" action="index.php" method="POST">
+								<input type="hidden" name="action" value="delFecha" />
+								<input type="hidden" name="controller" value="encuesta" />
+								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
+								<input type="hidden" name="fecha" value="<?php echo $this->encuesta->getFechas()[$i]->getFecha();?>" />
+								<button type="submit" class="btn btn-danger"><span class="fas fa-trash-alt"></span></button>
+							</form>
+						</h4>
+					</li>
 
-				<?php
-					}
-					?>
-					<td>
-						<!-- Botón de creación de hora -->
-						<form action="index.php" method="POST">
-							<input type="time" name="hora">
-							<input type="hidden" name="action" value="addHora" />
-							<input type="hidden" name="controller" value="encuesta" />
-							<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
-							<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha();?>" />
-							<button type="submit" class="btn btn-primary btn-xs"><span class="fas fa-plus-circle"></span></button>
-						</form>
-					</td>
 					<?php
-				}
-				?>
-				
-				<!-- Hueco vacío para la columna de crear fecha -->
-				<td></td>
-			</tr>
+					foreach($this->encuesta->getFechas()[$i]->getHoras() as $hora) {
+						?>	
+						<li class="list-group-item">
+							<?php echo $hora->getHoraInicio()." - ".$hora->getHoraFin();?>
+
+							<!-- boton eliminar para hora -->
+							<form class="d-inline float-right form-inline" action="index.php" method="POST">
+								<input type="hidden" name="action" value="delHora" />
+								<input type="hidden" name="controller" value="encuesta" />
+								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
+								<input type="hidden" name="fecha" value="<?php echo $this->encuesta->getFechas()[$i]->getFecha();?>" />
+								<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio();?>" />
+								<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin();?>" />
+								<button type="submit" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span></button>
+							</form>
+						</li>
+						<?php
+					}
+					?>
+
+						<li class="list-group-item">
+							<form class="form-inline" action="index.php" method="POST">
+								<input type="time" name="hora" class="form-control form-control-sm">
+								<input type="hidden" name="action" value="addHora" />
+								<input type="hidden" name="controller" value="encuesta" />
+								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
+								<input type="hidden" name="fecha" value="<?php echo $this->encuesta->getFechas()[$i]->getFecha();?>" />
+								<button type="submit" class="btn btn-primary btn-sm float-right"><span class="fas fa-plus-circle"></span></button>
+							</form>
+						</li>
+
+				</ul>
+			</div>
 
 			<?php
+			if($i % 3 == 2) {
+				?></div><?php
+			}
+		}
+		?>
 
+		<h4>Nueva fecha</h4>
+		
+		<form class="form-inline" action="index.php" method="POST">
+			<input type="date" name="fecha" class="form-control"/>
+			<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
+			<input type="hidden" name="action" value="addFecha" />
+			<input type="hidden" name="controller" value="encuesta" />
+			<button type="submit" class="btn btn-primary"><span class="fas fa-plus-circle"></span></button>
+		</form>
 
-			//Creamos subgrupos con los votos de cada usuario
-			$votosAgrupados = $this->subgruposVotos($this->votos);
-			//var_dump($votosAgrupados);
+		<br/>
 
-			//Ordenar los votos segun el orden de las fechas en la encuesta
-			//Coger la primera fecha, si para el primer subarray de votos hay un voto en esa fecha que esta 
-			//vaya de primera.
-				for($i=0;$i<count($votosAgrupados);$i++)
-				{
-					$subgrupo=$votosAgrupados[$i];
-					$subgrupoOrdenado=$this->ordenarSubgrupos($subgrupo, $fechas);
-					$votosAgrupados[$i]=$subgrupoOrdenado;
-				}
-				//var_dump($votosAgrupados);
-			for($i=0;$i<count($votosAgrupados);$i++)
-			{
-				$usuario =$votosAgrupados[$i][0]->getUsuario();
-				?>
-			<tr>
-				<th colspan="2">
-					<?php echo $usuario;?>
-				</th>
-				<?php
-					foreach($fechas as $fecha)
-					{
-						foreach($horas as $hora)
-						{
-							$voto = $this->comprobarVoto($fecha,$hora,$votosAgrupados[$i]);
-							if($voto==true)
-							{
-								?>
-				<td>
-					<i class="fas fa-check-circle fa-3x color-blue"></i>
-				</td>
+		<div class="mx-auto">
+			<p> Comparte este link para que la gente participe </p>
+			<input type="text" size="35" value="<?php echo $this->encuesta->getID();?>" />
+		</div>
 
-				<?php
-							}
-							else
-							{
-								?>
-				<td>
-				</td>
-				<?php
-							}
-							}
-				?>
-				<!-- Hueco vacío para la columna de crear hora -->
-				<td></td>
-				<?php
-						}
-
-					?>
-					<!-- Hueco vacío para la columna de crear fecha -->
-					<td></td>
-					<?php
-					}
-					?>
-
-				
-			</tr>
-		</table>
 	</div>
 
-	<div class="linkencuesta">
-		<p> Comparte este link para que la gente participe </p>
-		<input type="text" size="35" value="<?php echo $this->encuesta->getID();?>" />
-	</div>
+
+</main>
 	<?php
-			}		
+	}		
 
 	function subgruposVotos($votos)
 	{

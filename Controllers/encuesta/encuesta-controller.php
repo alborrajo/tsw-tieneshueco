@@ -108,7 +108,7 @@ class EncuestaController
 						new Voto("login","tieneshueco.com/enlace1284u28o3uroweh","Lunes 20 agosto","10:45","12:45")
 					);
 
-					(new ParticiparView($encuesta,$votos))->render();
+					(new ParticiparView($encuesta,$votos,$_SESSION["email"]))->render();
 					break;
 
 				default:

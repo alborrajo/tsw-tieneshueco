@@ -10,19 +10,23 @@ class ParticiparView extends PlantillaView {
 
 	private $encuesta;
 	private $votos;
+	private $usuarioVotante;
 	private $msg;
 
-	function __construct($encuesta, $votos, $msg=NULL)
+	function __construct($encuesta, $votos, $usuarioVotante, $msg=NULL)
 	{
 		$this->encuesta = $encuesta;
 		$this->votos = $votos;
+		$this->usuarioVotante = $usuarioVotante;
 		$this->msg = $msg;
 		parent::__construct(true);
 	}
 
 	function _render() {
-		?>
 
+		$creadaFilaVotante = false;
+
+		?>
 		<main class= "container">
 			<div id="divdescripcion">
 				<h1> <?php echo $this->encuesta->getNombre();?> </h1>
@@ -31,7 +35,7 @@ class ParticiparView extends PlantillaView {
 			</div>
 
 			<div id="encuesta">
-				<table class="table table-bordered">
+				<table class="table table-responsive">
 					<thead>
 						<tr>
 							<th colspan="2">
@@ -108,8 +112,9 @@ class ParticiparView extends PlantillaView {
 										$voto = $this->comprobarVoto($fecha,$hora,$votosAgrupados[$i]);
 										if($voto==true)
 										{
-											if($usuario==$_SESSION["email"])
+											if($usuario==$this->usuarioVotante)
 											{
+												$creadaFilaVotante = true;
 											?>
 											<td>
 												<form action="index.php" method="post">
@@ -138,7 +143,7 @@ class ParticiparView extends PlantillaView {
 										}
 										else
 										{
-											if($usuario!=$_SESSION["email"])
+											if($usuario!=$this->usuarioVotante)
 											{
 											?>
 											<td>
