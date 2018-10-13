@@ -60,10 +60,12 @@ class PerfilController {
         //Obtener encuestas de la BD con el modelo del perfil
         try {
             $perfilModel = new PerfilModel();
-            $encuestas = $perfilModel->getEncuestas($_SESSION["email"]);
+            $arrEncuestas = $perfilModel->getEncuestas($_SESSION["email"]);
 
+            if(!isset($arrEncuestas["encuestas"])) {$arrEncuestas["encuestas"] = array();}
+            if(!isset($arrEncuestas["encuestasCompartidas"])) {$arrEncuestas["encuestasCompartidas"] = array();}
             //Mostrar vista con las encuestas sacadas de la BD
-            (new PerfilView($encuestas["encuestas"],$encuestas["encuestasCompartidas"],MSGException::getTemporalMessage()))->render();
+            (new PerfilView($arrEncuestas["encuestas"],$arrEncuestas["encuestasCompartidas"],MSGException::getTemporalMessage()))->render();
         } catch (MSGException $e) {
             MSGException::setTemporalMessage($e); //Añadir mensaje temporal de error
             (new MSGView($e,true))->render();
