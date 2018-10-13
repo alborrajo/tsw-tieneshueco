@@ -28,22 +28,29 @@ class EncuestaController
 				{
 
 					case "addVoto":
-						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["hora"])
+						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["horaInicio"] && $_POST["horaFin"])
 						{
 							//Anhadir un voto a esa encuesta con el usuario de la sesion 
+							$encuestaModel->addVoto($_POST["idEncuesta"], $_SESSION["email"], $_POST["fecha"]
+							, $_POST["horaInicio"], $_POST["horaFin"]);
 
 						}
 						header("Location: index.php?controller=encuesta&action=participarencuesta");
 						break;
+
 
 					case "delVoto":
-						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["hora"])
-						{
-							//Borrar un voto a esa encuesta con el usuario de la sesion 
-							
-						}
+					if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["horaInicio"] && $_POST["horaFin"])
+					{
+						//Anhadir un voto a esa encuesta con el usuario de la sesion 
+						$encuestaModel->delVoto($_POST["idEncuesta"], $_SESSION["email"], $_POST["fecha"]
+						, $_POST["horaInicio"], $_POST["horaFin"]);
+
+					}
 						header("Location: index.php?controller=encuesta&action=participarencuesta");
 						break;
+
+
 
 					case "addFecha":
 						if($_POST["idEncuesta"] && $_POST["fecha"])
