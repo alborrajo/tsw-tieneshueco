@@ -88,8 +88,8 @@ class EditarView extends PlantillaView{
 
 						<li class="list-group-item">
 							<form class="form-inline" action="index.php" method="POST">
-								<input type="time" name="horaInicio" class="form-control form-control-sm">
-								<input type="time" name="horaFin" class="form-control form-control-sm">
+								<input type="time" name="horaInicio" class="form-control form-control-sm" min="00:00" max="23:59" required>
+								<input type="time" name="horaFin" class="form-control form-control-sm" min="00:00" max="23:59" required>
 								<input type="hidden" name="action" value="addHora" />
 								<input type="hidden" name="controller" value="encuesta" />
 								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
@@ -141,9 +141,12 @@ class EditarView extends PlantillaView{
 
 	function subgruposVotos($votos)
 	{
+		$votosAgrupados=Array();
 		//Creamos subgrupos con los votos de cada usuario
+		if(!empty($votos))
+		{
 			$usuarioActual = $votos[0]->getUsuario();
-			$votosAgrupados=Array();
+			
 			$i = 0;
 			$k = 0;
 
@@ -159,9 +162,13 @@ class EditarView extends PlantillaView{
 					$k=0;
 					$i++;
 					$votosAgrupados[$i][$k]=$voto;
+					$usuarioActual = $voto->getUsuario();
+					$k++;
 				}
 			}
+		}
 			return $votosAgrupados;
+
 	}
 
 	function ordenarSubgrupos($subgrupo, $fechas)

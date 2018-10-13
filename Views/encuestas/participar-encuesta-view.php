@@ -225,6 +225,8 @@ class ParticiparView extends PlantillaView {
 					$k=0;
 					$i++;
 					$votosAgrupados[$i][$k]=$voto;
+					$usuarioActual = $voto->getUsuario();
+					$k++;
 				}
 			}
 		}
