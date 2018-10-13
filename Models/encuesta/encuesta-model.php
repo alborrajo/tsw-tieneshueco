@@ -17,6 +17,62 @@ class EncuestaModel {
         }
     }
 
+    function addFecha($id, $fecha) {
+        try {
+            $stmt = $this->dbh->prepare("INSERT INTO FECHA (IDENCUESTA, FECHA) VALUES (:id, :fecha)");
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":fecha", $fecha);
+
+            if(!$stmt->execute()) {throw new PDOException();}
+        }
+        catch (PDOException $e) {
+            throw new MSGException("Error añadiendo la nueva fecha","danger");    
+        }
+    }
+
+    function addHora($id, $fecha, $horaInicio, $horaFin) {
+        try {
+            $stmt = $this->dbh->prepare("INSERT INTO HORA (IDENCUESTA, FECHA, HORAINICIO, HORAFIN) VALUES (:id, :fecha, :horainicio, :horafin)");
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":fecha", $fecha);
+            $stmt->bindParam(":horainicio", $horaInicio);
+            $stmt->bindParam(":horafin", $horaFin);
+
+            if(!$stmt->execute()) {throw new PDOException();}
+        }
+        catch (PDOException $e) {
+            throw new MSGException("Error añadiendo la nueva hora","danger");    
+        }
+    }
+
+    function delFecha($id, $fecha) {
+        try {
+            $stmt = $this->dbh->prepare("DELETE FROM FECHA WHERE IDENCUESTA = :id AND FECHA = :fecha");
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":fecha", $fecha);
+
+            if(!$stmt->execute()) {throw new PDOException();}
+        }
+        catch (PDOException $e) {
+            throw new MSGException("Error eliminando la fecha","danger");    
+        }
+    }
+
+    function delHora($id, $fecha, $horaInicio, $horaFin) {
+        try {
+            $stmt = $this->dbh->prepare("DELETE FROM HORA WHERE IDENCUESTA = :id AND FECHA = :fecha AND HORAINICIO = :horainicio AND HORAFIN = :horafin");
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":fecha", $fecha);
+            $stmt->bindParam(":horainicio", $horaInicio);
+            $stmt->bindParam(":horafin", $horaFin);
+
+            if(!$stmt->execute()) {throw new PDOException();}
+        }
+        catch (PDOException $e) {
+            throw new MSGException("Error eliminando la hora","danger");    
+        }
+    }    
+
     function getEncuesta($id) {
         try {
             //Encuesta

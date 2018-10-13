@@ -16,7 +16,9 @@ class EncuestaController
 {
 	function __construct()
 	{
+		
 		try {
+
 			$encuestaModel = new EncuestaModel();
 
 			if(isset($_POST["action"]))
@@ -45,35 +47,58 @@ class EncuestaController
 
 					case "addFecha":
 						if($_POST["idEncuesta"] && $_POST["fecha"])
-						{	
+						{
+							//Comprobar si el usuario actual es el propietario de la encuesta
+							$perfilModel = new PerfilModel();
+							if($perfilModel->getPropietarioEncuesta($_POST["idEncuesta"]) != $_SESSION["email"]) {
+								throw new MSGException("La encuesta a editar no pertenece al usuario","warning");
+							}
 
+							$encuestaModel->addFecha($_POST["idEncuesta"], $_POST["fecha"]);
 						}
-						header("Location: index.php?controller=encuesta&action=editencuesta");
+						header("Location: index.php?controller=encuesta&action=editencuesta&id=".$_POST["idEncuesta"]);
 						break;
 
 					case "addHora":
-						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["hora"])
+						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["horaInicio"] && $_POST["horaFin"])
 						{
-							//TODO: Anhadir a la tabla horas una nueva tupla con el id de la encuesta, la fecha y la hora de inicio y fin.
+							//Comprobar si el usuario actual es el propietario de la encuesta
+							$perfilModel = new PerfilModel();
+							if($perfilModel->getPropietarioEncuesta($_POST["idEncuesta"]) != $_SESSION["email"]) {
+								throw new MSGException("La encuesta a editar no pertenece al usuario","warning");
+							}
+								
+							$encuestaModel->addHora($_POST["idEncuesta"], $_POST["fecha"], $_POST["horaInicio"], $_POST["horaFin"]);
 						}
-						header("Location: index.php?controller=encuesta&action=editencuesta");
+						header("Location: index.php?controller=encuesta&action=editencuesta&id=".$_POST["idEncuesta"]);
 						break;
 
 					case "delFecha":
 						if($_POST["idEncuesta"] && $_POST["fecha"])
 						{
-							//TODO: Eliminar de la tabla fecha la tupla que se corresponda con la encuesta y la fecha seleccionadas.
+							//Comprobar si el usuario actual es el propietario de la encuesta
+							$perfilModel = new PerfilModel();
+							if($perfilModel->getPropietarioEncuesta($_POST["idEncuesta"]) != $_SESSION["email"]) {
+								throw new MSGException("La encuesta a editar no pertenece al usuario","warning");
+							}
+
+							$encuestaModel->delFecha($_POST["idEncuesta"], $_POST["fecha"]);
 						}
-						header("Location: index.php?controller=encuesta&action=editencuesta");
+						header("Location: index.php?controller=encuesta&action=editencuesta&id=".$_POST["idEncuesta"]);
 						break;
 
 					case "delHora":
-						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["hora"])
+						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["horaInicio"] && $_POST["horaFin"])
 						{
-							//TODO: Eliminar de la tabla horas la tupla que se corresponda con la encuesta, fecha y hora seleccionadas.
-							//TODO: Anhadir a la tabla horas una nueva tupla con el id de la encuesta, la fecha y la hora de inicio y fin.
+							//Comprobar si el usuario actual es el propietario de la encuesta
+							$perfilModel = new PerfilModel();
+							if($perfilModel->getPropietarioEncuesta($_POST["idEncuesta"]) != $_SESSION["email"]) {
+								throw new MSGException("La encuesta a editar no pertenece al usuario","warning");
+							}
+								
+							$encuestaModel->delHora($_POST["idEncuesta"], $_POST["fecha"], $_POST["horaInicio"], $_POST["horaFin"]);
 						}
-						header("Location: index.php?controller=encuesta&action=editencuesta");
+						header("Location: index.php?controller=encuesta&action=editencuesta&id=".$_POST["idEncuesta"]);
 						break;
 
 					default:
@@ -81,21 +106,14 @@ class EncuestaController
 						break;
 				}
 			}
-			elseif(isset($_GET["action"]))
+			elseif(isset($_GET["action"]) && isset($_GET["id"]))
 			{
 				switch($_GET["action"])
 				{
 					case "editencuesta":
-						//Comprobar si el usuario actual es el propietario de la encuesta
-						$perfilModel = new PerfilModel();
-						if($perfilModel->getPropietarioEncuesta($_GET["id"]) == $_SESSION["email"]) {
-							//Obtener datos de la encuesta de la BD
-							$encuesta = $encuestaModel->getEncuesta($_GET["id"]);
-							(new EditarView($encuesta))->render();
-						}
-						else {
-                            throw new MSGException("La encuesta a editar no pertenece al usuario","warning");
-                        }						
+						//Obtener datos de la encuesta de la BD
+						$encuesta = $encuestaModel->getEncuesta($_GET["id"]);
+						(new EditarView($encuesta))->render();		
 						break;
 
 					case "participarencuesta":

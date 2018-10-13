@@ -64,29 +64,32 @@ class EditarView extends PlantillaView{
 					</li>
 
 					<?php
-					foreach($this->encuesta->getFechas()[$i]->getHoras() as $hora) {
-						?>	
-						<li class="list-group-item">
-							<?php echo $hora->getHoraInicio()." - ".$hora->getHoraFin();?>
+					if(!empty($this->encuesta->getFechas()[$i]->getHoras())) {
+						foreach($this->encuesta->getFechas()[$i]->getHoras() as $hora) {
+							?>	
+							<li class="list-group-item">
+								<?php echo $hora->getHoraInicio()." - ".$hora->getHoraFin();?>
 
-							<!-- boton eliminar para hora -->
-							<form class="d-inline float-right form-inline" action="index.php" method="POST">
-								<input type="hidden" name="action" value="delHora" />
-								<input type="hidden" name="controller" value="encuesta" />
-								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
-								<input type="hidden" name="fecha" value="<?php echo $this->encuesta->getFechas()[$i]->getFecha();?>" />
-								<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio();?>" />
-								<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin();?>" />
-								<button type="submit" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span></button>
-							</form>
-						</li>
-						<?php
+								<!-- boton eliminar para hora -->
+								<form class="d-inline float-right form-inline" action="index.php" method="POST">
+									<input type="hidden" name="action" value="delHora" />
+									<input type="hidden" name="controller" value="encuesta" />
+									<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
+									<input type="hidden" name="fecha" value="<?php echo $this->encuesta->getFechas()[$i]->getFecha();?>" />
+									<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio();?>" />
+									<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin();?>" />
+									<button type="submit" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span></button>
+								</form>
+							</li>
+							<?php
+						}
 					}
 					?>
 
 						<li class="list-group-item">
 							<form class="form-inline" action="index.php" method="POST">
-								<input type="time" name="hora" class="form-control form-control-sm">
+								<input type="time" name="horaInicio" class="form-control form-control-sm">
+								<input type="time" name="horaFin" class="form-control form-control-sm">
 								<input type="hidden" name="action" value="addHora" />
 								<input type="hidden" name="controller" value="encuesta" />
 								<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
@@ -107,6 +110,7 @@ class EditarView extends PlantillaView{
 
 	</div>
 
+	<div>
 		<h4>Nueva fecha</h4>
 		<form class="form-inline" action="index.php" method="POST">
 			<input type="date" name="fecha" class="form-control"/>
@@ -115,13 +119,21 @@ class EditarView extends PlantillaView{
 			<input type="hidden" name="controller" value="encuesta" />
 			<button type="submit" class="btn btn-primary"><span class="fas fa-plus-circle"></span></button>
 		</form>
+	</div>
 
-		<br/>
+	<br/>
 
-		<div class="mx-auto">
-			<p> Comparte este link para que la gente participe </p>
-			<input type="text" size="35" value="<?php echo $this->encuesta->getID();?>" />
-		</div>
+	<div class="mx-auto">
+		<p> Comparte este link para que la gente participe </p>
+		<input id="shareURL" class="form-control" type="text" size="35" value="" />
+
+		<script>
+			var host = window.location.hostname;
+			var shareURL = document.getElementById("shareURL");
+
+			shareURL.value = "http://"+host+"/index.php?controller=encuesta&action=participarencuesta&id=<?php echo $this->encuesta->getID();?>";
+		</script>
+	</div>
 
 </main>
 	<?php

@@ -14,7 +14,7 @@ VALUES ("md5@md5.md5","md5","md5");
 
 
 INSERT INTO ENCUESTA (ID, NOMBRE, PROPIETARIO)
-VALUES ("20d59b95948b67ce4cadaac4f7934b1a","Reunión","propie@tar.io");
+VALUES ("20d59b95948b67ce4cadaac4f7934b1a","Reunion","propie@tar.io");
 INSERT INTO ENCUESTA (ID, NOMBRE, PROPIETARIO)
 VALUES ("ee057c31ff0e9d301189cfbbaea44c3f","Quedada youtuber para darse patadas voladoras","propie@tar.io");
 INSERT INTO ENCUESTA (ID, NOMBRE, PROPIETARIO)
