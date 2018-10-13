@@ -142,6 +142,44 @@ class EncuestaModel {
             throw new MSGException("Error obteniendo datos de los votos en la encuesta","danger");    
         }
     }
+
+    function addVoto($idEncuesta, $idUsuario, $fecha, $horaInicio, $horaFin)
+    {
+        try {
+            $stmt = $this->dbh->prepare("INSERT INTO VOTA (CORREOUSUARIO, IDENCUESTA, FECHA, HORAINICIO, HORAFIN) VALUES (:usuario, :id, :fecha, :horainicio, :horafin)");
+            $stmt->bindParam(":usuario", $idUsuario);
+            $stmt->bindParam(":id", $idEncuesta);
+            $stmt->bindParam(":fecha", $fecha);
+            $stmt->bindParam(":horainicio", $horaInicio);
+            $stmt->bindParam(":horafin", $horaFin);
+
+            if(!$stmt->execute()) {throw new PDOException();}
+        }
+        catch (PDOException $e) {
+            throw new MSGException("Error añadiendo la nueva hora","danger");    
+        }
+
+    }
+
+    function delVoto($idEncuesta, $idUsuario, $fecha, $horaInicio, $horaFin)
+    {
+
+        try {
+            $stmt = $this->dbh->prepare("DELETE FROM VOTA WHERE CORREOUSUARIO = :usuario AND IDENCUESTA = :id 
+                AND FECHA = :fecha AND HORAINICIO = :horainicio AND HORAFIN = :horafin");
+            $stmt->bindParam(":usuario", $idUsuario);
+            $stmt->bindParam(":id", $idEncuesta);
+            $stmt->bindParam(":fecha", $fecha);
+            $stmt->bindParam(":horainicio", $horaInicio);
+            $stmt->bindParam(":horafin", $horaFin);
+
+            if(!$stmt->execute()) {throw new PDOException();}
+        }
+        catch (PDOException $e) {
+            throw new MSGException("Error eliminando la hora","danger");    
+        }
+
+    }
 }
 
 ?>

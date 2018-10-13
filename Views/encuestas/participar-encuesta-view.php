@@ -201,9 +201,12 @@ class ParticiparView extends PlantillaView {
 	
 	function subgruposVotos($votos)
 	{
+		$votosAgrupados=Array();
 		//Creamos subgrupos con los votos de cada usuario
+		if(!empty($votos))
+		{
 			$usuarioActual = $votos[0]->getUsuario();
-			$votosAgrupados=Array();
+			
 			$i = 0;
 			$k = 0;
 
@@ -221,7 +224,9 @@ class ParticiparView extends PlantillaView {
 					$votosAgrupados[$i][$k]=$voto;
 				}
 			}
+		}
 			return $votosAgrupados;
+
 	}
 
 	function ordenarSubgrupos($subgrupo, $fechas)
