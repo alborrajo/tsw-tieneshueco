@@ -66,6 +66,8 @@ class ParticiparView extends PlantillaView {
 							foreach($fechas as $fecha)
 							{
 								$horas = $fecha->getHoras();
+								if(!empty($horas))
+								{
 								foreach($horas as $hora)
 								{
 									?>
@@ -74,6 +76,7 @@ class ParticiparView extends PlantillaView {
 									</td>
 									<?php
 								}
+							}
 							}
 							?>
 						</tr>
@@ -120,8 +123,8 @@ class ParticiparView extends PlantillaView {
 													<input type="hidden" name="controller" value="encuesta">
 													<input type="hidden" name="action" value="delVoto">
 													<input type="hidden" name="email" value="<?php echo $usuario ?>">
-													<input type="hidden" name="idEncuesta" value="<?php $this->encuesta->getID() ?>">
-													<input type="hidden" name="fecha" value="<?php $fecha->getFecha() ?>">
+													<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID() ?>">
+													<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha() ?>">
 													<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
 													<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
 													<input type="submit" value="votado" checked="checked"/>
@@ -158,8 +161,8 @@ class ParticiparView extends PlantillaView {
 													<input type="hidden" name="controller" value="encuesta">
 													<input type="hidden" name="action" value="addVoto">
 													<input type="hidden" name="email" value="<?php echo $usuario ?>">
-													<input type="hidden" name="idEncuesta" value="<?php $this->encuesta->getID() ?>">
-													<input type="hidden" name="fecha" value="<?php $fecha->getFecha() ?>">
+													<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID() ?>">
+													<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha() ?>">
 													<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
 													<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
 													<input type="submit" value="No votado" checked="checked"/>
