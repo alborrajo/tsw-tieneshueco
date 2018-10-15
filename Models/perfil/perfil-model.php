@@ -87,7 +87,7 @@ class PerfilModel {
             }
 
             //Encuestas compartidas
-            $stmt = $this->dbh->prepare("SELECT e.* FROM ENCUESTA e, VOTA v WHERE CORREOUSUARIO = :email AND ID = IDENCUESTA");
+            $stmt = $this->dbh->prepare("SELECT DISTINCT e.ID, e.NOMBRE, e.PROPIETARIO FROM ENCUESTA e, VOTA v WHERE CORREOUSUARIO = :email AND ID = IDENCUESTA");
             $stmt->bindParam(":email", $email);
 
             if(!$stmt->execute()) {throw new PDOException();}
