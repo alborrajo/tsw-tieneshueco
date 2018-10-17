@@ -13,6 +13,9 @@ class LoginController {
 				case "login":
 					//TODO: Comprobar login en la BD
 					//Codigo de ejemplo
+
+					if(isset($_POST["email"]) && isset($_POST["password"]))
+					{
 					include 'Models/login/login-model.php';
 					$usuario = new LoginModel();
 					$respuesta = $usuario->login($_REQUEST['email'],$_REQUEST['password']);
@@ -25,6 +28,7 @@ class LoginController {
 					else { //Si el login es invalido
 						header('Location: index.php?controller=login&action=loginError'); //Redirigir al login por GET con accion loginError
 					}
+					}
 					break;
 				
 				case "register":
@@ -32,6 +36,8 @@ class LoginController {
 					//		Añadir email, contraseña y nombre
 					//TODO: Establecer sesion con datos añadidos
 					//Codigo de ejemplo
+					if(isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["nombre"]))
+					{
 					include 'Models/login/login-model.php';
 					$usuario = new LoginModel();
 					$respuesta = $usuario->Register($_REQUEST['email']);
@@ -43,6 +49,7 @@ class LoginController {
 					else{
 						header('Location: index.php?controller=login&action=registerError');
 						
+					}
 					}
 					break;
 

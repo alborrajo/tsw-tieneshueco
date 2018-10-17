@@ -181,6 +181,8 @@ class ParticiparView extends PlantillaView {
 							</tr>
 							<?php
 						}
+						//TODO:
+						//IF filaVotante no creada crear una nueva fila con botones no votado para todas las horas
 						?>
 						<?php
 
