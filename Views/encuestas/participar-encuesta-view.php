@@ -109,6 +109,7 @@ class ParticiparView extends PlantillaView {
 								<?php
 								foreach($fechas as $fecha)
 								{
+									$horas = $fecha->getHoras();
 									foreach($horas as $hora)
 									{
 										$voto = $this->comprobarVoto($fecha,$hora,$votosAgrupados[$i]);
@@ -181,8 +182,7 @@ class ParticiparView extends PlantillaView {
 							</tr>
 							<?php
 						}
-						//TODO:
-						//IF filaVotante no creada crear una nueva fila con botones no votado para todas las horas
+						
 						if($creadaFilaVotante==false)
 						{
 							?>
@@ -197,6 +197,7 @@ class ParticiparView extends PlantillaView {
 								<?php
 									foreach($fechas as $fecha)
 									{
+										$horas = $fecha->getHoras();
 										foreach($horas as $hora)
 										{
 											?>

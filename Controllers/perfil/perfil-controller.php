@@ -16,7 +16,7 @@ class PerfilController {
 
                 switch($_POST["action"]) {
                     case "nuevaEncuesta":
-                        if(isset($_POST["nombre"]) && isset($_POST["email"]))
+                        if(isset($_POST["nombre"]))
                         {
                         //Añadir nueva encuesta en la BD
                         $id = $perfilModel->nuevaEncuesta($_POST["nombre"],$_SESSION["email"]); //Usar NOMBRE del POST y PROPIETARIO de SESSION
