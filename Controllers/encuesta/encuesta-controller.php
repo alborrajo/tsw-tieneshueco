@@ -36,7 +36,7 @@ class EncuestaController
 							, $_POST["horaInicio"], $_POST["horaFin"]);
 
 						}
-						header("Location: index.php?controller=encuesta&action=participarencuesta");
+						header("Location: index.php?controller=encuesta&action=participarencuesta&id=".$_POST["idEncuesta"]);
 						break;
 
 
@@ -49,7 +49,7 @@ class EncuestaController
 						, $_POST["horaInicio"], $_POST["horaFin"]);
 
 					}
-						header("Location: index.php?controller=encuesta&action=participarencuesta");
+						header("Location: index.php?controller=encuesta&action=participarencuesta&id=".$_POST["idEncuesta"]);
 						break;
 
 
