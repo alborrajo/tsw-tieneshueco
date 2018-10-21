@@ -1,7 +1,4 @@
 <?php
-//IMPORTANTE: Este header SOLO se debe mostrar CUANDO EL USUARIO HA INICIADO SESION
-//Si no ha iniciado sesión, se deberá mostrar otro header SIN BOTONES DE CREAR ENCUESTA, ENCUESTAS Y CERRAR SESIÓN
-
 abstract class PlantillaView {
 
     private $logeado;
