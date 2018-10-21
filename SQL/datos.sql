@@ -20,7 +20,7 @@ VALUES ("ee057c31ff0e9d301189cfbbaea44c3f","Quedada youtuber para darse patadas 
 INSERT INTO ENCUESTA (ID, NOMBRE, PROPIETARIO)
 VALUES ("71ce30c162e84936de7584ed3c384b5b","Prueba","otropropie@tar.io");
 INSERT INTO ENCUESTA (ID, NOMBRE, PROPIETARIO)
-VALUES ("01b3f378798d72bf73c8050d76707e0a","Cumpleaños","otropropie@tar.io");
+VALUES ("01b3f378798d72bf73c8050d76707e0a","Cumpleanos","otropropie@tar.io");
 INSERT INTO ENCUESTA (ID, NOMBRE, PROPIETARIO)
 VALUES ("d8c30b0993a4029a9f307767b3f2436e","Fleenstones!?","grand@dad.com");
 INSERT INTO ENCUESTA (ID, NOMBRE, PROPIETARIO)
