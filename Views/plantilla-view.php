@@ -27,7 +27,7 @@ abstract class PlantillaView {
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
                 
-                <!--<link rel="stylesheet" href="../estilo.css" type="text/css"/>-->
+                <link rel="stylesheet" href="../estilo.css" type="text/css"/>
                 
                 <title>Tieneshueco?</title>
             </head>
@@ -36,8 +36,7 @@ abstract class PlantillaView {
                                     
                 <nav class="navbar navbar-light bg-light">
                     <a href="/" class="float-left" href="#">
-                        <img src="../images/logotipo.png" alt="logotipo" width="32" height="32" class="d-inline-block"/>
-                        TienesHueco
+                        <img src="/images/logotipo.png" alt="logotipo" height="64" class="d-inline-block"/>
                     </a>
                     
                     <?php if($this->logeado) { //Mostrar solo si el usuario está logeado ?>
