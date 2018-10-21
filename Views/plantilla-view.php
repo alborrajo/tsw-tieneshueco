@@ -32,9 +32,9 @@ abstract class PlantillaView {
                 <title>Tieneshueco?</title>
             </head>
 
-            <body>    
+            <body class="main-bg">    
                                     
-                <nav class="navbar navbar-light bg-light">
+                <nav class="navbar navbar-bg">
                     <a href="/" class="float-left" href="#">
                         <img src="/images/logotipo.png" alt="logotipo" height="64" class="d-inline-block"/>
                     </a>

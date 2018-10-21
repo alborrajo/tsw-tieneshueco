@@ -128,7 +128,7 @@ class ParticiparView extends PlantillaView {
 													<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha() ?>">
 													<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
 													<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
-													<button type="submit" class="btn btn-success btn-sm" value="votado"><span class="far fa-envelope"></span></button>
+													<button type="submit" class="btn btn-primary btn-sm" value="votado"><span class="far fa-check-circle"></span></button>
 												</form>
 											</td>
 											<?php
@@ -166,7 +166,7 @@ class ParticiparView extends PlantillaView {
 													<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha() ?>">
 													<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
 													<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
-													<button type="submit" class="btn btn-warning btn-sm" value="votado"><span class="far fa-envelope"></span></button>
+													<button type="submit" class="btn btn-warning btn-sm" value="votado"><span class="far fa-check-circle"></span></button>
 												</form>
 											</td>
 											<?php
@@ -210,7 +210,7 @@ class ParticiparView extends PlantillaView {
 													<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha() ?>">
 													<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
 													<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
-													<button type="submit" class="btn btn-warning btn-sm" value="votado"><span class="far fa-envelope"></span></button>
+													<button type="submit" class="btn btn-warning btn-sm" value="votado"><span class="far fa-check-circle"></span></button>
 											</form>
 											</td>
 											<?php
