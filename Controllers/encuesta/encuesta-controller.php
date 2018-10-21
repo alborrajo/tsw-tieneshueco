@@ -28,32 +28,34 @@ class EncuestaController
 				{
 
 					case "addVoto":
-						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["horaInicio"] && $_POST["horaFin"])
+						if(isset($_POST["idEncuesta"]) && isset($_POST["fecha"]) && isset($_POST["horaInicio"])
+						 && isset($_POST["horaFin"]))
 						{
 							//Anhadir un voto a esa encuesta con el usuario de la sesion 
 							$encuestaModel->addVoto($_POST["idEncuesta"], $_SESSION["email"], $_POST["fecha"]
 							, $_POST["horaInicio"], $_POST["horaFin"]);
 
 						}
-						header("Location: index.php?controller=encuesta&action=participarencuesta");
+						header("Location: index.php?controller=encuesta&action=participarencuesta&id=".$_POST["idEncuesta"]);
 						break;
 
 
 					case "delVoto":
-					if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["horaInicio"] && $_POST["horaFin"])
+					if(isset($_POST["idEncuesta"]) && isset($_POST["fecha"]) && isset($_POST["horaInicio"]) &&
+					isset( $_POST["horaFin"]))
 					{
 						//Anhadir un voto a esa encuesta con el usuario de la sesion 
 						$encuestaModel->delVoto($_POST["idEncuesta"], $_SESSION["email"], $_POST["fecha"]
 						, $_POST["horaInicio"], $_POST["horaFin"]);
 
 					}
-						header("Location: index.php?controller=encuesta&action=participarencuesta");
+						header("Location: index.php?controller=encuesta&action=participarencuesta&id=".$_POST["idEncuesta"]);
 						break;
 
 
 
 					case "addFecha":
-						if($_POST["idEncuesta"] && $_POST["fecha"])
+						if(isset($_POST["idEncuesta"]) && isset($_POST["fecha"]))
 						{
 							//Comprobar si el usuario actual es el propietario de la encuesta
 							$perfilModel = new PerfilModel();
@@ -67,7 +69,8 @@ class EncuestaController
 						break;
 
 					case "addHora":
-						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["horaInicio"] && $_POST["horaFin"])
+						if(isset($_POST["idEncuesta"]) && isset($_POST["fecha"]) && isset($_POST["horaInicio"])
+						 && isset($_POST["horaFin"]))
 						{
 							//Comprobar si el usuario actual es el propietario de la encuesta
 							$perfilModel = new PerfilModel();
@@ -81,7 +84,7 @@ class EncuestaController
 						break;
 
 					case "delFecha":
-						if($_POST["idEncuesta"] && $_POST["fecha"])
+						if(isset($_POST["idEncuesta"]) && isset($_POST["fecha"]))
 						{
 							//Comprobar si el usuario actual es el propietario de la encuesta
 							$perfilModel = new PerfilModel();
@@ -95,7 +98,8 @@ class EncuestaController
 						break;
 
 					case "delHora":
-						if($_POST["idEncuesta"] && $_POST["fecha"] && $_POST["horaInicio"] && $_POST["horaFin"])
+						if(isset($_POST["idEncuesta"]) && isset($_POST["fecha"]) && isset($_POST["horaInicio"])
+						 && isset($_POST["horaFin"]))
 						{
 							//Comprobar si el usuario actual es el propietario de la encuesta
 							$perfilModel = new PerfilModel();

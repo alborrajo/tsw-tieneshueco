@@ -16,14 +16,26 @@ class PerfilController {
 
                 switch($_POST["action"]) {
                     case "nuevaEncuesta":
+                        if(isset($_POST["nombre"]))
+                        {
                         //Añadir nueva encuesta en la BD
                         $id = $perfilModel->nuevaEncuesta($_POST["nombre"],$_SESSION["email"]); //Usar NOMBRE del POST y PROPIETARIO de SESSION
 
                         //Redirigir al controlador de ENCUESTAS con accion de EDITAR la encuesta generada
                         header("Location: /index.php?controller=encuesta&action=editencuesta&id=".$id);
+                        }
+                        else
+                        {
+
+                            header("Location: /index.php?controller=perfil"); 
+
+                        }
                         break;
 
                     case "delEncuesta":
+                    
+                        if(isset($_POST["id"]))
+                        {
                         //Comprobar si el usuario es propietario de la encuesta
                         if($perfilModel->getPropietarioEncuesta($_POST["id"]) == $_SESSION["email"]) {
                             //Borrar encuesta de la BD
@@ -32,6 +44,7 @@ class PerfilController {
                         }
                         else {
                             throw new MSGException("La encuesta a eliminar no pertenece al usuario","warning");
+                        }
                         }
 
                         //Redirigir al controlador de PERFIL para mostrar mensaje confirmando
