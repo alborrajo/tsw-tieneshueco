@@ -6,8 +6,9 @@ include_once "Classes/Voto.php";
 
 include_once "Views/plantilla-view.php";
 
-class ParticiparView extends PlantillaView {
 
+class ParticiparView extends PlantillaView {
+	
 	private $encuesta;
 	private $votos;
 	private $usuarioVotante;
@@ -23,6 +24,10 @@ class ParticiparView extends PlantillaView {
 	}
 
 	function _render() {
+		include "Locale/en.php";
+        if(isset($_SESSION["locale"])) {
+            include "Locale/".$_SESSION["locale"].".php";
+        }
 
 		$creadaFilaVotante = false;
 
@@ -31,7 +36,7 @@ class ParticiparView extends PlantillaView {
 			<div id="divdescripcion">
 				<h1> <?php echo $this->encuesta->getNombre();?> </h1>
 				<br/>
-				<h4> Participa en la encuesta. </h4>
+				<h4><?php echo $strings["ParticipatePoll"]; ?></h4>
 			</div>
 
 			<div id="encuesta">
@@ -39,7 +44,7 @@ class ParticiparView extends PlantillaView {
 					<thead>
 						<tr>
 							<th colspan="2">
-								Fechas
+								<?php echo $strings["Dates"]; ?>
 							</th>
 						<?php
 						//Insertamos las fechas en la primera fila de la tabla
@@ -59,7 +64,7 @@ class ParticiparView extends PlantillaView {
 					<tbody>
 						<tr>
 							<th colspan="2">
-								Horas
+								<?php echo $strings["Hours"]; ?>
 							</th>
 							<?php
 							//Insertamos las horas en la segunda fila de la tabla

@@ -2,8 +2,9 @@
 
 include_once "Classes/MSGException.php";
 
+
 class LoginModel {
-	
+    
 	private $dbh;
 	
 
@@ -17,7 +18,7 @@ function __construct(){
         }
         catch (PDOException $e) {
             //Si no se hace así, se mostrarían todos los datos de la conexión, INCLUYENDO USER Y PASS DE LA BD
-            throw new MSGException("Error conectando con la BD","danger");
+            throw new MSGException($strings["DBConnectionError"],"danger");
         }
 }
 
@@ -41,7 +42,7 @@ function login($email, $password){
            
         }
         catch (PDOException $e) {
-            throw new MSGException("Error obteniendo datos sobre el usuario","danger");    
+            throw new MSGException($strings["UserGetError"],"danger");    
         }
 }//fin metodo login
 
@@ -63,7 +64,7 @@ function Register($email){
         }
 	}	
 	catch (PDOException $e) {
-            throw new MSGException("Error obteniendo datos sobre el usuario","danger");    
+            throw new MSGException($strings["UserGetError"],"danger");    
         }
 		
 
@@ -80,7 +81,7 @@ function registrar($email, $password, $nombre){
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException("Error registrando al usuario","danger");    
+            throw new MSGException($strings["UserRegisterError"],"danger");    
         }
 }
 

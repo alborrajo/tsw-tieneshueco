@@ -6,7 +6,7 @@ include_once "Views/plantilla-view.php";
 
 
 class PerfilView extends PlantillaView {
-
+    
     private $encuestas;
     private $encuestasCompartidas;
     private $msgException;
@@ -19,9 +19,13 @@ class PerfilView extends PlantillaView {
     }
 
     function _render() {
+        include "Locale/en.php";
+        if(isset($_SESSION["locale"])) {
+            include "Locale/".$_SESSION["locale"].".php";
+        }
         ?>
         <main class="container">	
-            <h3>Encuestas</h3>
+            <h3><?php echo $strings["Polls"]; ?></h3>
 
             <ul class="list-group">
                 <?php
@@ -61,7 +65,7 @@ class PerfilView extends PlantillaView {
             </div>     
             <?php } ?>
 
-            <h3>Encuestas compartidas</h3>
+            <h3><?php echo $strings["SharedPolls"]; ?></h3>
 
             <ul class="list-group">
             <?php

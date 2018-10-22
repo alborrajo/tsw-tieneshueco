@@ -2,8 +2,9 @@
 
 include_once "Classes/MSGException.php";
 
-class PerfilModel {
 
+class PerfilModel {
+    
     private $dbh;
 
     function __construct() {
@@ -13,7 +14,7 @@ class PerfilModel {
         }
         catch (PDOException $e) {
             //Si no se hace así, se mostrarían todos los datos de la conexión, INCLUYENDO USER Y PASS DE LA BD
-            throw new MSGException("Error conectando con la BD","danger");
+            throw new MSGException($strings["DBConnectionError"],"danger");
         }
     }
 
@@ -34,7 +35,7 @@ class PerfilModel {
             return $id;
         }
         catch (PDOException $e) {
-            throw new MSGException("Error añadiendo la nueva encuesta","danger");    
+            throw new MSGException($strings["EncuestaAddError"],"danger");    
         }
     }
 
@@ -51,7 +52,7 @@ class PerfilModel {
             return $stmt->fetch()["PROPIETARIO"];
         }
         catch (PDOException $e) {
-            throw new MSGException("Error obteniendo datos sobre la encuesta","danger");    
+            throw new MSGException($strings["EncuestaGetError"],"danger");    
         }
     }
 
@@ -66,7 +67,7 @@ class PerfilModel {
             
         }
         catch (PDOException $e) {
-            throw new MSGException("Error eliminando encuesta","danger");    
+            throw new MSGException($strings["EncuestaDeleteError"],"danger");    
         }
     }
 
@@ -100,7 +101,7 @@ class PerfilModel {
             return $toReturn;
         }
         catch (PDOException $e) {
-            throw new MSGException("Error obteniendo datos de las encuestas del usuario","danger");    
+            throw new MSGException($strings["EncuestasGetError"],"danger");    
         }
     }
 

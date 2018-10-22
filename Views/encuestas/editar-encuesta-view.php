@@ -8,8 +8,9 @@ include_once "Classes/MSGException.php";
 
 include_once "Views/plantilla-view.php";
 
-class EditarView extends PlantillaView{
 
+class EditarView extends PlantillaView{
+	
 	private $encuesta;
 	private $votos;
 	private $msg;
@@ -23,6 +24,10 @@ class EditarView extends PlantillaView{
 
 	function _render()
 	{
+		include "Locale/en.php";
+        if(isset($_SESSION["locale"])) {
+            include "Locale/".$_SESSION["locale"].".php";
+        }
 
 		?>
 
@@ -31,10 +36,9 @@ class EditarView extends PlantillaView{
 
 	<div id="divdescripcion">
 		<h1> <?php echo $this->encuesta->getNombre();?> </h1>
-		<p> Ahora podrás editar tu encuesta, decide entre que días estará la votación y envía el enlace generado para que la
-			gente empiece a votar. </p>
+		<p><?php echo $strings["EditPollMsg"]; ?></p>
 		<br />
-		<h3> Edita tu encuesta. </h3>
+		<h3><?php echo $strings["EditPoll"]; ?></h3>
 	</div>
 
 	<div class="container mx-auto">
@@ -111,7 +115,7 @@ class EditarView extends PlantillaView{
 	</div>
 
 	<div>
-		<h4>Nueva fecha</h4>
+		<h4><?php echo $strings["NewFecha"]; ?></h4>
 		<form class="form-inline" action="index.php" method="POST">
 			<input type="date" name="fecha" class="form-control"/>
 			<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID();?>" />
@@ -124,7 +128,7 @@ class EditarView extends PlantillaView{
 	<br/>
 
 	<div class="mx-auto">
-		<p> Comparte este link para que la gente participe </p>
+		<p><?php echo $strings["ShareLink"]; ?></p>
 		<input id="shareURL" class="form-control" type="text" size="35" value="" />
 
 		<script>

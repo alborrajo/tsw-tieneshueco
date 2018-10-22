@@ -11,7 +11,6 @@ include_once "Classes/Fecha.php";
 include_once "Classes/Hora.php";
 include_once "Classes/MSGException.php";
 
-
 class EncuestaController
 {
 	function __construct()

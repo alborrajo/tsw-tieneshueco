@@ -2,8 +2,9 @@
 
 include_once "Classes/MSGException.php";
 
-class EncuestaModel {
 
+class EncuestaModel {
+    
     private $dbh;
 
     function __construct() {
@@ -13,7 +14,7 @@ class EncuestaModel {
         }
         catch (PDOException $e) {
             //Si no se hace así, se mostrarían todos los datos de la conexión, INCLUYENDO USER Y PASS DE LA BD
-            throw new MSGException("Error conectando con la BD","danger");
+            throw new MSGException($strings["DBConnectionError"],"danger");
         }
     }
 
@@ -26,7 +27,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException("Error añadiendo la nueva fecha","danger");    
+            throw new MSGException($strings["DateAddError"],"danger");    
         }
     }
 
@@ -41,7 +42,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException("Error añadiendo la nueva hora","danger");    
+            throw new MSGException($strings["HourAddError"],"danger");    
         }
     }
 
@@ -54,7 +55,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException("Error eliminando la fecha","danger");    
+            throw new MSGException($strings["DateDeleteError"],"danger");    
         }
     }
 
@@ -69,7 +70,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException("Error eliminando la hora","danger");    
+            throw new MSGException($strings["HourDeleteError"],"danger");    
         }
     }    
 
@@ -118,7 +119,7 @@ class EncuestaModel {
             return $toReturn;
         }
         catch (PDOException $e) {
-            throw new MSGException("Error obteniendo los datos de la encuesta","danger");    
+            throw new MSGException($strings["EncuestaGetError"],"danger");    
         }
     }
 
@@ -139,7 +140,7 @@ class EncuestaModel {
             return $toReturn;
         }
         catch (PDOException $e) {
-            throw new MSGException("Error obteniendo datos de los votos en la encuesta","danger");    
+            throw new MSGException($strings["VotosGetError"],"danger");    
         }
     }
 
@@ -156,7 +157,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException("Error añadiendo la nueva hora","danger");    
+            throw new MSGException($strings["VotoAddError"],"danger");    
         }
 
     }
@@ -176,7 +177,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException("Error eliminando la hora","danger");    
+            throw new MSGException($strings["VotoDeleteError"],"danger");    
         }
 
     }

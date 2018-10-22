@@ -1,6 +1,23 @@
 <?php
     session_start();
 
+    //Locale
+    include "Locale/en.php"; //English by default
+
+    if(isset($_REQUEST["locale"])) {
+        switch($_REQUEST["locale"]) {
+            case "es":
+                $_SESSION["locale"] = "es";
+                break;
+            default:
+                $_SESSION["locale"] = "en";
+        }
+    }
+
+    if(isset($_SESSION["locale"])) {
+        include "Locale/".$_SESSION["locale"].".php";
+    }
+
     //Si se ha especificado el controller al que ir
     if(isset($_REQUEST["controller"])) {
         //Si el usuario está logeado, puede ir a los siguientes controladores:
