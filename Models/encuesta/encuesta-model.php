@@ -2,19 +2,26 @@
 
 include_once "Classes/MSGException.php";
 
-
 class EncuestaModel {
     
     private $dbh;
+    private $strings;
 
     function __construct() {
+        include "Locale/en.php";
+        if(isset($_SESSION["locale"])) {
+            include "Locale/".$_SESSION["locale"].".php";
+        }
+
+        $this->strings = $strings;
+
         try {
             $this->dbh = new PDO('mysql:host=localhost;dbname=TIENESHUECO', "tieneshueco", "tieneshueco");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e) {
             //Si no se hace así, se mostrarían todos los datos de la conexión, INCLUYENDO USER Y PASS DE LA BD
-            throw new MSGException($strings["DBConnectionError"],"danger");
+            throw new MSGException($this->strings["DBConnectionError"],"danger");
         }
     }
 
@@ -27,7 +34,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException($strings["DateAddError"],"danger");    
+            throw new MSGException($this->strings["DateAddError"],"danger");    
         }
     }
 
@@ -42,7 +49,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException($strings["HourAddError"],"danger");    
+            throw new MSGException($this->strings["HourAddError"],"danger");    
         }
     }
 
@@ -55,7 +62,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException($strings["DateDeleteError"],"danger");    
+            throw new MSGException($this->strings["DateDeleteError"],"danger");    
         }
     }
 
@@ -70,7 +77,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException($strings["HourDeleteError"],"danger");    
+            throw new MSGException($this->strings["HourDeleteError"],"danger");    
         }
     }    
 
@@ -119,7 +126,7 @@ class EncuestaModel {
             return $toReturn;
         }
         catch (PDOException $e) {
-            throw new MSGException($strings["EncuestaGetError"],"danger");    
+            throw new MSGException($this->strings["EncuestaGetError"],"danger");    
         }
     }
 
@@ -140,7 +147,7 @@ class EncuestaModel {
             return $toReturn;
         }
         catch (PDOException $e) {
-            throw new MSGException($strings["VotosGetError"],"danger");    
+            throw new MSGException($this->strings["VotosGetError"],"danger");    
         }
     }
 
@@ -157,7 +164,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException($strings["VotoAddError"],"danger");    
+            throw new MSGException($this->strings["VotoAddError"],"danger");    
         }
 
     }
@@ -177,7 +184,7 @@ class EncuestaModel {
             if(!$stmt->execute()) {throw new PDOException();}
         }
         catch (PDOException $e) {
-            throw new MSGException($strings["VotoDeleteError"],"danger");    
+            throw new MSGException($this->strings["VotoDeleteError"],"danger");    
         }
 
     }
