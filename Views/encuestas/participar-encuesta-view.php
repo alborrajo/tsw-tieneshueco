@@ -73,15 +73,18 @@ class ParticiparView extends PlantillaView {
 								$horas = $fecha->getHoras();
 								if(!empty($horas))
 								{
-								foreach($horas as $hora)
-								{
-									?>
-									<td>
-										<?php echo $hora->getHoraInicio()." - ".$hora->getHoraFin(); ?>
-									</td>
-									<?php
+									foreach($horas as $hora)
+									{
+										?>
+										<td>
+											<?php echo $hora->getHoraInicio()." - ".$hora->getHoraFin(); ?>
+										</td>
+										<?php
+									}
 								}
-							}
+								else {
+									?><td></td><?php
+								}
 							}
 							?>
 						</tr>
@@ -115,72 +118,78 @@ class ParticiparView extends PlantillaView {
 								foreach($fechas as $fecha)
 								{
 									$horas = $fecha->getHoras();
-									foreach($horas as $hora)
+									if(!empty($horas))
 									{
-										$voto = $this->comprobarVoto($fecha,$hora,$votosAgrupados[$i]);
-										if($voto==true)
+										foreach($horas as $hora)
 										{
-											if($usuario==$this->usuarioVotante)
+											$voto = $this->comprobarVoto($fecha,$hora,$votosAgrupados[$i]);
+											if($voto==true)
 											{
-												$creadaFilaVotante = true;
-											?>
-											<td>
-												<form action="index.php" method="post">
-													<input type="hidden" name="controller" value="encuesta">
-													<input type="hidden" name="action" value="delVoto">
-													<input type="hidden" name="email" value="<?php echo $usuario ?>">
-													<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID() ?>">
-													<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha() ?>">
-													<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
-													<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
-													<button type="submit" class="btn btn-primary btn-sm" value="votado"><span class="far fa-check-circle"></span></button>
-												</form>
-											</td>
-											<?php
+												if($usuario==$this->usuarioVotante)
+												{
+													$creadaFilaVotante = true;
+												?>
+												<td>
+													<form action="index.php" method="post">
+														<input type="hidden" name="controller" value="encuesta">
+														<input type="hidden" name="action" value="delVoto">
+														<input type="hidden" name="email" value="<?php echo $usuario ?>">
+														<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID() ?>">
+														<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha() ?>">
+														<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
+														<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
+														<button type="submit" class="btn btn-primary btn-sm" value="votado"><span class="far fa-check-circle"></span></button>
+													</form>
+												</td>
+												<?php
+												}
+												else
+												{
+												?>
+												<td>
+													<i class="fas fa-check-circle fa-3x color-blue"></i>
+												</td>
+
+												<?php
+												}
+												
 											}
 											else
 											{
-											?>
-											<td>
-												<i class="fas fa-check-circle fa-3x color-blue"></i>
-											</td>
+												if($usuario!=$this->usuarioVotante)
+												{
+												?>
+												<td>
+												</td>
+												<?php
+											}
+											else
+											{
+												?>
 
-											<?php
+												<td>
+													<form action="index.php" method="post">
+														<input type="hidden" name="controller" value="encuesta">
+														<input type="hidden" name="action" value="addVoto">
+														<input type="hidden" name="email" value="<?php echo $usuario ?>">
+														<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID() ?>">
+														<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha() ?>">
+														<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
+														<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
+														<button type="submit" class="btn btn-warning btn-sm" value="votado"><span class="far fa-check-circle"></span></button>
+													</form>
+												</td>
+												<?php
+
+											}
 											}
 											
-										}
-										else
-										{
-											if($usuario!=$this->usuarioVotante)
-											{
 											?>
-											<td>
-											</td>
 											<?php
 										}
-										else
-										{
-											?>
-
-											<td>
-												<form action="index.php" method="post">
-													<input type="hidden" name="controller" value="encuesta">
-													<input type="hidden" name="action" value="addVoto">
-													<input type="hidden" name="email" value="<?php echo $usuario ?>">
-													<input type="hidden" name="idEncuesta" value="<?php echo $this->encuesta->getID() ?>">
-													<input type="hidden" name="fecha" value="<?php echo $fecha->getFecha() ?>">
-													<input type="hidden" name="horaInicio" value="<?php echo $hora->getHoraInicio() ?>">
-													<input type="hidden" name="horaFin" value="<?php echo $hora->getHoraFin() ?>">
-													<button type="submit" class="btn btn-warning btn-sm" value="votado"><span class="far fa-check-circle"></span></button>
-												</form>
-											</td>
-											<?php
-
-										}
-										}
-										
-										?>
-										<?php
+									}
+									else {
+										?><td></td><?php
 									}
 								}
 								?>
